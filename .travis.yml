@@ -9,7 +9,7 @@ python:
 before_install:
   - sudo sed -i 's/us-central1.gce/us-central1.gce.clouds/' /etc/apt/sources.list
   - sudo apt-get -qq update
-  - sudo apt-get install -y texlive-lang-cjk oracle-java8-installer
+  - sudo apt-get install -y texlive-lang-cjk texlive-fonts-recommended oracle-java8-installer
   - sudo mkdir /usr/share/texlive/texmf-dist/tex/latex/mylatex/
   - sudo mv ./stylefiles/* /usr/share/texlive/texmf-dist/tex/latex/mylatex/
   - sudo mktexlsr
