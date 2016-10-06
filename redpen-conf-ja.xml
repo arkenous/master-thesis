@@ -1,0 +1,49 @@
+<redpen-conf lang="ja" type="zenkaku2">
+    <validators>
+        <validator name="SentenceLength"> <!-- 一文の長さが長すぎないかを見る -->
+            <property name="max_len" value="100"/>
+        </validator>
+        <validator name="CommaNumber"/> <!-- 読点の数が多すぎないかを見る -->
+        <validator name="WordNumber"> <!-- 一文の単語数が多すぎないかを見る -->
+          <property name="max_num" value="60"/>
+        </validator>
+        <validator name="InvalidSymbol"/> <!-- 記号の種類をチェック -->
+        <validator name="KatakanaEndHyphen"/> <!-- カタカナ語の後ろの長音チェック -->
+        <validator name="KatakanaSpellCheck"/> <!-- 非常によく似たカタカナ語が使われていないかをチェック -->
+        <validator name="SectionLength"> <!-- 一節の単語数が多すぎないかを見る -->
+            <property name="max_num" value="1500"/>
+        </validator>
+        <validator name="ParagraphNumber"/> <!-- 一節あたりの段落数が多すぎないかを見る -->
+        <validator name="Contraction"/> <!-- 英語の省略形をチェック（論文で省略形は使用すべきでない） -->
+        <!--<validator name="DoubledWord" />--> <!-- 一文の中に同じ単語が複数回出ていないかを見る -->
+        <validator name="SuccessiveWord"/> <!-- 同じ単語が連続して使用されていないか -->
+        <validator name="DuplicatedSection"/> <!-- 節が重複していないかを見る -->
+        <validator name="JapaneseStyle"/> <!-- ですますとであるが混じっていないか -->
+        <validator name="DoubleNegative"/> <!-- 二重否定がないかを見る -->
+        <validator name="FrequentSentenceStart"/> <!-- 頻繁に同じ単語で文を始めていないかを見る -->
+        <validator name="WordFrequency"/> <!-- 単語があまりにも多用されていないかを見る -->
+        <validator name="Hyphenation"/> <!-- ハイフンが必要な単語について，ハイフンが使われているかを見る -->
+        <!--<validator name="NumberFormat"/>--> <!-- 数字について，カンマが適切に打たれているかを見る -->
+        <validator name="WeakExpression"/> <!-- 弱い表現が使われていないかを見る -->
+
+        <!--<validator name="SpaceBetweenAlphabeticalWord" />-->
+        <validator name="DoubledJoshi"/>
+        <validator name="HankakuKana"/>
+        <validator name="Okurigana"/>
+        <validator name="VoidSection"/>
+        <validator name="SectionLevel"/>
+        <validator name="JapaneseAmbiguousNounConjunction"/>
+        <validator name="JapaneseNumberExpression">
+          <property name="mode" value="kansuji"/>
+        </validator>
+        <validator name="SuccessiveSentence"/>
+        <validator name="DoubledConjunctiveParticleGa"/>
+
+    </validators>
+    <!--
+    <symbols>
+        <symbol name="FULL_STOP" value="．" invalid_chars="。."/>
+        <symbol name="COMMA" value="，" invalid_chars="、,"/>
+    </symbols>
+    -->
+</redpen-conf>
