@@ -27,7 +27,7 @@
         <validator name="WeakExpression"/> <!-- 弱い表現が使われていないかを見る -->
 
         <!--<validator name="SpaceBetweenAlphabeticalWord" />-->
-        <validator name="DoubledJoshi"/>
+        <!--<validator name="DoubledJoshi"/>-->
         <validator name="HankakuKana"/>
         <validator name="Okurigana"/>
         <validator name="VoidSection"/>
