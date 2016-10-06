@@ -1,0 +1,92 @@
+%
+% $Id: blank-thesis.tex,v 1.1 2014-05-21 16:07:38+09 kobayasi Exp $
+%
+\documentclass[12pt]{jreport}
+\usepackage{newcent}             % PDFへの変換後の品質を高める %なくても大丈夫らしい．
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{wrapfig}
+\usepackage{comment}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{color}
+\definecolor{purple}{rgb}{0.6,0,0.4}
+\definecolor{brown}{cmyk}{0,0.81,1,0.60}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\usepackage{listings, jlisting}
+\lstdefinestyle{MyJava} % JavaとXML，2つの言語を使いたかったので．style=MyJavaとかで使い分け
+{
+language=Java, % lstlisting内の言語の指定
+numbers=left, % 行番号を左端に表示する
+breaklines = true, % 行が長くなってしまった場合の改行を行う
+basicstyle={\small}, % 標準の書式設定
+identifierstyle={\small}, % 識別子のスタイル
+keywordstyle={\small\bfseries\color{purple}}, % キーワードのスタイル
+commentstyle={\small\itshape\color{gray}}, % コメントのスタイル
+stringstyle={\small\ttfamily\color{brown}}, % 文字列のスタイル
+frame=single, % 枠のスタイル
+tabsize=2, % タブ幅
+showstringspaces=false, % 空白を可視化するか
+}
+\lstdefinelanguage{XML} % XMLはあまり充実してないってさー
+{
+    morestring=[b]",
+    morestring=[s]{>}{<},
+    morecomment=[s]{<?}{?>},
+    stringstyle=\color{brown},
+    identifierstyle=\color{darkblue},
+    keywordstyle=\color{cyan},
+    morekeywords={xmlns,version,type}% list your attributes here
+}
+\lstdefinestyle{MyXML} % JavaとXM（ry
+{
+language=XML,
+numbers=left,
+breaklines=true,
+basicstyle={\small},
+identifierstyle={\small\color{darkblue}},
+keywordstyle={\small\bfseries\color{cyan}},
+commentstyle={\small\itshape\color{gray}},
+stringstyle={\small\ttfamily\color{brown}},
+frame=single,
+tabsize=2,
+showstringspaces=false,
+}
+
+\renewcommand{\slash}{/}
+\graphicspath{{./Screenshots/}, {./Graphs/}, {./Figures/}} % 図用の画像ファイルの保存パスを指定
+\usepackage{otf} % OpenType Font utfなどにしか無いような文字を利用する
+\usepackage{longtable} % ページをまたぐ表の作成
+\usepackage[master]{grad}
+
+\title{\bfseries スマートフォンのモーションセンサを利用した\\個人認証アプリケーションの開発}
+\graduate{総合情報学研究科\\知識情報学専攻}
+\department{マルチメディア情報システムの基礎と実際}
+\id{15M7112}
+\author{\UTF{9AD9}坂 賢佑}
+\date{}%空のままにすること
+
+\renewcommand{\bibname}{参考文献，参考URL等}
+
+\begin{document}
+\maketitle
+
+\pagenumbering{roman}
+%\input{0_Abstruct.tex}
+
+\tableofcontents %目次作成（必須）
+\listoffigures   %図目録（任意）
+\listoftables    %表目録（任意）
+
+\clearpage
+\setcounter{page}{0}
+\pagenumbering{arabic}
+
+%\input{1_Introduction.tex}
+%\input{7_Conclusion.tex}
+%\clearpage
+%\input{8_Thanks_to.tex}
+%\input{9_References.tex}
+
+\end{document}
