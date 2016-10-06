@@ -1,0 +1,253 @@
+%\makeatletter
+% $Id: grad.sty,v 1.1 2014-05-21 16:07:38+09 kobayasi Exp $
+% Copyleft Kazuo Moriwaka 
+% You can copy this file freely under GPL 2.0.
+%
+% 21 Mar, 2001: Revision Control was started.
+
+\NeedsTeXFormat{pLaTeX2e}
+\typeout{ THESIS: --------------------------------------------------}
+\typeout{ THESIS: 小林ゼミ　修士論文}
+\typeout{ THESIS: スタイルファイル 2013年度版}
+\typeout{ THESIS: --------------------------------------------------}
+\DeclareOption{doctor}{\Th@graduatetrue\Th@doctortrue}
+\DeclareOption{master}{\Th@graduatetrue\Th@doctorfalse}
+\DeclareOption{bacheler}{\Th@graduatefalse}
+\newif\ifTh@graduate
+\newif\ifTh@doctor
+\ProcessOptions
+
+% 長さ指定
+\renewcommand{\baselinestretch}{1.35} 
+\renewcommand{\bibname}{参考文献，参考URL等}
+
+\marginparwidth=0cm
+\topmargin=-1cm
+\headheight=0.8cm
+\headsep=1.2cm
+\oddsidemargin=0cm
+\evensidemargin=0cm
+%\textwidth=43zw
+\textwidth=16.8cm
+\textheight=24.0cm
+\baselineskip=\textheight \divide\baselineskip by 31
+\topskip=\baselineskip
+%\textheight=31\baselineskip
+
+\pagestyle{headings}
+
+\itemsep=0.05\baselineskip
+\parsep=0pt
+\topsep=0.01\baselineskip
+\partopsep=0pt
+\listparindent=0zw
+
+\setlength\abovecaptionskip{2\p@}
+%\setlength\belowcaptionskip{5\p@}
+
+\setlength\Cht{\ht0}
+\setlength\Cdp{\dp0}
+\setlength\Cwd{\wd0}
+\setlength\Cvs{\baselineskip}
+\setlength\Chs{\wd0}
+
+% タイトル用変数
+\def\id#1{\gdef\@id{#1}}       %なにもしません．
+\def\teacher#1{\relax}  %なにもしません．
+\def\hdtype#1{\relax}   %なにもしません．
+\def\graduate#1{\gdef\@graduate{#1}}%
+\def\department#1{\gdef\@department{#1}}%
+
+% タイトル
+\def\@maketitle{\begin{titlepage}
+  \let\footnotesize\small
+  \let\footnoterule\relax
+  \let\footnote\thanks
+  \null\vspace{5zh}%
+\begin{center}%
+    {\LARGE \@title \par}%
+  \null\vspace{5zh}%
+    {\LARGE
+     \lineskip .75em%
+        \@graduate\\%
+        \vspace{3zh}%
+        \@department\\%
+        \vspace{2zh}%
+      \begin{tabular}[t]{c}%
+        \@id\\%
+        \@author%
+      \end{tabular}\par}%
+      \vskip 1.5em%
+    {\large \@date \par}%       % Set date in \large size.
+\end{center}%
+}
+\def\maketitle{%
+\let\footnotesize\small
+\let\footnoterule\relax
+\let\footnote\thanks
+\if@twocolumn
+  \ifnum \col@number=\@ne \@maketitle
+  \else \twocolumn[\@maketitle]%
+  \fi
+\else
+  \@maketitle
+\fi
+\end{titlepage}%
+\setcounter{footnote}{0}%
+\global\let\maketitle\relax
+\global\let\@title\@empty
+%\global\let\@author\@empty % used in header
+\global\let\@teacher\@empty
+%\global\let\@id\@empty % used in header
+\global\let\title\relax
+\global\let\author\relax
+\global\let\teacher\relax
+\global\let\id\relax
+}
+
+% ヘッダー
+\newcount\Year \Year\year\relax
+\newcount\Minus \Minus1\relax
+%
+%\ifTh@graduate%
+%  \ifTh@doctor%
+%    \def\hdtype{博士論文}
+%  \else
+%    \def\hdtype{修士論文}
+%  \fi
+%  \typeout{ GAIYO: ★ヘッダを\hdtype 要旨用に設定します。★}
+%  \newcount\Month \Month\month\relax%
+%  \advance\Year-1988%
+%  \ifnum \month < 10%
+%    \ifnum \month > 3%
+%      \gdef\hd@type{平成\number\Year~年9月期\hskip1zw\hdtype}
+%    \fi
+%  \else
+%    \ifnum \month < 13%
+%      \advance\Year+1%
+%      \gdef\hd@type{平成\number\Year~年3月期\hskip1zw\hdtype}
+%    \fi
+%  \fi
+%  \ifnum \month < 4%
+%      \gdef\hd@type{平成\number\Year~年3月期\hskip1zw\hdtype}
+%  \fi
+%\else
+%  \typeout{ GAIYO: ★ヘッダを卒業研究用に設定します。★}
+%  \ifnum \month < 4 \advance\Year-\Minus\fi
+%  \gdef\hd@type{\number\Year~年度\hskip1zw卒業研究}
+%\fi
+
+%\def\ps@headings{\let\@mkboth\@gobbletwo
+%        \gdef\@oddhead{\small \rlap{\@id\hskip1zw\@author} \hfil
+%        \hd@type \hfil \llap{\thepage{}/\pageref{lastpage}}
+%        \gdef\@evenhead{\@oddhead}
+%        \gdef\@oddfoot{\@empty}
+%        \gdef\@evenfoot{\@oddfoot}}}
+%\pagestyle{headings}
+%
+% 小細工
+% これによって最終ページを参照できるようになります．
+%\let\org@enddocument\enddocument
+%\def\enddocument{\label{lastpage}\org@enddocument}
+
+% タイトル
+%\def\@maketitle{\begin{center}%
+%  \vspace{\baselineskip}%
+%  {\large \bfseries%
+%    \@title \par%
+%    \vspace{\baselineskip}%
+%    \begin{tabular}[t]{p{5cm}p{5cm}}%
+%      \multicolumn{1}{r}{\@id}     & \@author \\%
+%      \multicolumn{1}{r}{指導教員} & \@teacher\\%
+%      \mbox{}& \\%
+%    \end{tabular}%
+%  }%
+%\end{center}%
+%}
+%\def\maketitle{%
+%\let\footnotesize\small
+%\let\footnoterule\relax
+%\let\footnote\thanks
+%\if@twocolumn
+%  \ifnum \col@number=\@ne \@maketitle
+%  \else \twocolumn[\@maketitle]%
+%  \fi
+%\else
+%  \@maketitle
+%\fi
+%\setcounter{footnote}{0}%
+%\global\let\maketitle\relax
+%\global\let\@title\@empty
+%\global\let\@author\@empty % used in header
+%\global\let\@teacher\@empty
+%\global\let\@id\@empty % used in header
+%\global\let\title\relax
+%\global\let\author\relax
+%\global\let\teacher\relax
+%\global\let\id\relax
+%}
+
+%章
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+   {.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+   {0.04\Cvs \@plus.3\Cdp}%
+   {\reset@font\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+   {.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+   {0.04\Cvs \@plus.3\Cdp}%
+   {\reset@font\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{\z@}%
+   {.5\Cvs \@plus.5\Cdp \@minus.2\Cdp}%
+   {0.04\Cvs \@plus.3\Cdp}%
+   {\reset@font\bfseries}}
+
+\def\@listi{\leftmargin\leftmargini}
+\let\@listI\@listi
+\@listi
+\def\@listii {\leftmargin\leftmarginii
+              \labelwidth\leftmarginii
+              \advance\labelwidth-\labelsep}
+\def\@listiii{\leftmargin\leftmarginiii
+              \labelwidth\leftmarginiii
+              \advance\labelwidth-\labelsep}
+\def\@listiv {\leftmargin\leftmarginiv
+              \labelwidth\leftmarginiv
+              \advance\labelwidth-\labelsep}
+\def\@listv  {\leftmargin\leftmarginv
+              \labelwidth\leftmarginv
+              \advance\labelwidth-\labelsep}
+\def\@listvi {\leftmargin\leftmarginvi
+              \labelwidth\leftmarginvi
+              \advance\labelwidth-\labelsep}
+
+%%おまけ
+%\catcode`/=\active
+%\def/{\slash}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% figure環境，table環境外で\caption{}命令と同様な
+% 機能を実現する．
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\tbcaption{\def\@captype{table}\caption}
+\def\fgcaption{\def\@captype{figure}\caption}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% センタリング
+
+%\def\centertext{%
+%         \oddsidemargin=\paperwidth
+%	 \advance\oddsidemargin-\textwidth
+%	 \oddsidemargin=0.5\oddsidemargin
+%	 \advance\oddsidemargin-1in
+%	 \evensidemargin=\oddsidemargin
+%
+%	 \topmargin=\paperheight
+%	 \advance\topmargin-\textheight
+%	 \topmargin=0.5\topmargin
+%	 \advance\topmargin-\headsep
+%	 \advance\topmargin-\headheight
+%	 \advance\topmargin-1in
+%	 }
+
+%\makeatother
