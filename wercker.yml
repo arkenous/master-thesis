@@ -1,0 +1,48 @@
+# Read more about containers on our dev center
+# http://devcenter.wercker.com/docs/containers/index.html
+box: trileg/arch-base:latest
+
+# This is the build pipeline. Pipelines are the core of wercker
+# Read more about pipelines on our dev center
+# http://devcenter.wercker.com/docs/pipelines/index.html
+build:
+  # The steps that will be executed on build
+  # Steps make up the actions in your pipeline
+  # Read more about steps on our dev center:
+  # http://devcenter.wercker.com/docs/steps/index.html
+  steps:
+    - script:
+        name: Check environment
+        code: |
+          id
+          pwd
+    - script:
+        name: Install packages
+        code: |
+          su user
+          pacaur -Syu --noconfirm --noedit texlive-langcjk texlive-fontsextra jdk
+          exit
+    - script:
+        name: Install LaTeX stylefiles
+        code: |
+          mkdir /usr/share/texmf-dist/tex/latex/mylatex
+          mv ./stylefiles/* /usr/share/texmf-dist/tex/latex/mylatex/
+          mktexlsr
+    - script:
+        name: Install RedPen
+        code: |
+          curl -L -o /tmp/redpen.tar.gz https://github.com/redpen-cc/redpen/releases/download/redpen-1.7.4/redpen-1.7.4.tar.gz
+          mkdir redpen
+          tar -zxvf /tmp/redpen.tar.gz -C redpen --strip-components 1
+          export PATH=$PWD/redpen/bin/:$PATH
+    - script:
+        name: Proofread LaTeX documents by RedPen
+        code: |
+          redpen -c redpen-conf-ja.xml -f latex 0_Abstruct.tex
+    - script:
+        name: Compile LaTeX documents
+        code: |
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape master.tex
+          dvipdfmx master.dvi
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape master.tex
+          dvipdfmx master.dvi
