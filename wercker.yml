@@ -19,7 +19,7 @@ build:
     - script:
         name: Install packages
         code: |
-          sudo -u user pacaur -Syu --noconfirm --noedit texlive-langcjk texlive-fontsextra jdk
+          pacman -Syu --noconfirm texlive-langcjk texlive-fontsextra jdk8-openjdk
     - script:
         name: Install LaTeX stylefiles
         code: |
