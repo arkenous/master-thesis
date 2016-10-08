@@ -12,11 +12,6 @@ build:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     - script:
-        name: Check environment
-        code: |
-          id
-          pwd
-    - script:
         name: Install packages
         code: |
           pacman -Syu --noconfirm texlive-langcjk texlive-fontsextra jdk8-openjdk
