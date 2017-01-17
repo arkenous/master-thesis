@@ -21,6 +21,7 @@ build:
           mkdir /usr/share/texmf-dist/tex/latex/mylatex
           mv ./stylefiles/* /usr/share/texmf-dist/tex/latex/mylatex/
           mktexlsr
+          updmap
     - script:
         name: Install RedPen
         code: |
