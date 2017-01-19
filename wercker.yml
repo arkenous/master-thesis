@@ -1,6 +1,6 @@
 # Read more about containers on our dev center
 # http://devcenter.wercker.com/docs/containers/index.html
-box: trileg/arch-base:latest
+box: trileg/latex-redpen:latest
 
 # This is the build pipeline. Pipelines are the core of wercker
 # Read more about pipelines on our dev center
@@ -12,23 +12,11 @@ build:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     - script:
-        name: Install packages
-        code: |
-          pacman -Syu --noconfirm texlive-langcjk texlive-fontsextra jdk8-openjdk
-    - script:
         name: Install LaTeX stylefiles
         code: |
           mkdir /usr/share/texmf-dist/tex/latex/mylatex
           mv ./stylefiles/* /usr/share/texmf-dist/tex/latex/mylatex/
           mktexlsr
-          updmap
-    - script:
-        name: Install RedPen
-        code: |
-          curl -L -o /tmp/redpen.tar.gz https://github.com/redpen-cc/redpen/releases/download/redpen-1.7.4/redpen-1.7.4.tar.gz
-          mkdir redpen
-          tar -zxvf /tmp/redpen.tar.gz -C redpen --strip-components 1
-          export PATH=$PWD/redpen/bin/:$PATH
     - script:
         name: Proofread LaTeX documents by RedPen
         code: |
