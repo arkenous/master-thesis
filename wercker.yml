@@ -29,10 +29,6 @@ build:
           dvipdfmx master.dvi
           platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape master.tex
           dvipdfmx master.dvi
-    - script:
-        name: Clean files
-        code: |
-          ls | grep master | grep -v -E '.tex$|.pdf$' | xargs rm
     - leipert/git-push:
         gh_oauth: $GIT_TOKEN
         repo: trileg/master-thesis
