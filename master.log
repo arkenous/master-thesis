@@ -1,0 +1,281 @@
+This is e-pTeX, Version 3.14159265-p3.7-160201-2.6 (utf8.euc) (TeX Live 2016/Arch Linux) (preloaded format=platex 2017.1.19)  19 JAN 2017 12:30
+entering extended mode
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**master.tex
+(./master.tex
+pLaTeX2e <2016/09/08> (based on LaTeX2e <2016/03/31> patch level 3)
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(/usr/share/texmf-dist/tex/platex/base/jreport.cls
+Document Class: jreport 2006/06/27 v1.6 Standard pLaTeX class
+\c@@paper=\count82
+(/usr/share/texmf-dist/tex/platex/base/jsize12.clo
+File: jsize12.clo 2006/06/27 v1.6 Standard pLaTeX file (size option)
+)
+\c@part=\count83
+\c@chapter=\count84
+\c@section=\count85
+\c@subsection=\count86
+\c@subsubsection=\count87
+\c@paragraph=\count88
+\c@subparagraph=\count89
+\c@figure=\count90
+\c@table=\count91
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\symmincho=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY1/mc/m/n --> JY1/gt/m/n on input line 653.
+\toclineskip=\dimen118
+\@lnumwidth=\dimen119
+\bibindent=\dimen120
+\heisei=\count92
+)
+(/usr/share/texmf-dist/tex/latex/psnfss/newcent.sty
+Package: newcent 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvipdfmx.def on input line 99.
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
+File: dvipdfmx.def 2016/07/11 v4.12 LaTeX color/graphics driver for dvipdfmx (L
+3/ChoF)
+))
+\Gin@req@height=\dimen121
+\Gin@req@width=\dimen122
+)
+(/usr/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
+\fancy@headwidth=\skip43
+\f@ncyO@elh=\skip44
+\f@ncyO@erh=\skip45
+\f@ncyO@olh=\skip46
+\f@ncyO@orh=\skip47
+\f@ncyO@elf=\skip48
+\f@ncyO@erf=\skip49
+\f@ncyO@olf=\skip50
+\f@ncyO@orf=\skip51
+)
+(/usr/share/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: dvips.def on input line 147.
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/dvips.def
+File: dvips.def 2016/07/10 v3.1a Driver-dependent file (DPC,SPQR)
+)
+(/usr/share/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+))
+Package color Info: Redefining color cyan on input line 14.
+
+(/usr/share/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count93
+\lst@gtempboxa=\box41
+\lst@token=\toks16
+\lst@length=\count94
+\lst@currlwidth=\dimen123
+\lst@column=\count95
+\lst@pos=\count96
+\lst@lostspace=\dimen124
+\lst@width=\dimen125
+\lst@newlines=\count97
+\lst@lineno=\count98
+\lst@maxwidth=\dimen126
+
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count99
+\lst@skipnumbers=\count100
+\lst@framebox=\box42
+)
+(/usr/share/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+(/usr/share/texmf-dist/tex/latex/mylatex/jlisting.sty
+Package: jlisting 2006/02/20 0.2 (Thor)
+\lst@nextchar=\count101
+\lst@inputfile=\read1
+)
+(/usr/share/texmf-dist/tex/platex/japanese-otf-uptex/otf.sty
+Package: otf 2013/11/17 v1.7b6 psitau, u0.17 ttk
+LaTeX Font Info:    Redeclaring symbol font `mincho' on input line 279.
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `normal'
+(Font)                  JY1/mc/m/n --> JY1/hmc/m/n on input line 279.
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY1/gt/m/n --> JY1/hmc/m/n on input line 279.
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY1/hmc/m/n --> JY1/hmc/bx/n on input line 281.
+LaTeX Font Info:    Redeclaring math alphabet \mathgt on input line 282.
+LaTeX Font Info:    Overwriting math alphabet `\mathgt' in version `normal'
+(Font)                  JY1/gt/m/n --> JY1/hgt/m/n on input line 282.
+LaTeX Font Info:    Overwriting math alphabet `\mathgt' in version `bold'
+(Font)                  JY1/gt/m/n --> JY1/hgt/m/n on input line 282.
+LaTeX Font Info:    Overwriting math alphabet `\mathgt' in version `bold'
+(Font)                  JY1/hgt/m/n --> JY1/hgt/bx/n on input line 283.
+
+(/usr/share/texmf-dist/tex/platex/japanese-otf/ajmacros.sty
+Package: ajmacros 2005/12/25 13:52 iNOUE Koich! <inoue@ma.ns.musashi-tech.ac.jp
+>
+\@tempcntc=\count102
+\@tempcntd=\count103
+\@tempcnte=\count104
+\@tempcntf=\count105
+))
+(/usr/share/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip52
+\LTright=\skip53
+\LTpre=\skip54
+\LTpost=\skip55
+\LTchunksize=\count106
+\LTcapwidth=\dimen127
+\LT@head=\box43
+\LT@firsthead=\box44
+\LT@foot=\box45
+\LT@lastfoot=\box46
+\LT@cols=\count107
+\LT@rows=\count108
+\c@LT@tables=\count109
+\c@LT@chunks=\count110
+\LT@p@ftn=\toks17
+)
+(/usr/share/texmf-dist/tex/latex/mylatex/grad.sty
+ THESIS: --------------------------------------------------
+ THESIS: 小林ゼミ　修士論文
+ THESIS: スタイルファイル 2013年度版
+ THESIS: --------------------------------------------------
+\Year=\count111
+\Minus=\count112
+) (./master.aux)
+\openout1 = `master.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+ (I search kanjifont definition file: . . )
+(I search font definition file: . . . . . . . )
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 11.54663pt on input line 70.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 11.54663pt on input line 70.
+LaTeX Font Info:    Try loading font information for OT1+pnc on input line 70.
+
+(/usr/share/texmf-dist/tex/latex/psnfss/ot1pnc.fd
+File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
+)
+\c@lstlisting=\count113
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 19.95642pt on input line 71.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 19.95642pt on input line 71.
+LaTeX Font Info:    Font shape `JT1/hmc/bx/n' in size <20.74> not available
+(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 71.
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 19.95642pt on input line 71.
+LaTeX Font Info:    Font shape `JY1/hmc/bx/n' in size <20.74> not available
+(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 71.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 19.95642pt on input line 71.
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <20.74> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 71.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <20.74> on input line 71.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 71.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 71.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 13.85594pt on input line 71.
+LaTeX Font Info:    Font shape `JT1/utfj/m/9' will be
+(Font)              scaled to size 19.95642pt on input line 71.
+LaTeX Font Info:    Font shape `JY1/utfj/m/9' will be
+(Font)              scaled to size 19.95642pt on input line 71.
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 13.85594pt on input line 71.
+ [1
+
+] (./0_Abstruct.tex
+LaTeX Font Info:    Font shape `JT1/hmc/m/n' will be
+(Font)              scaled to size 23.94002pt on input line 1.
+LaTeX Font Info:    Font shape `JY1/hmc/m/n' will be
+(Font)              scaled to size 23.94002pt on input line 1.
+LaTeX Font Info:    Font shape `JT1/hmc/bx/n' in size <24.88> not available
+(Font)              Font shape `JT1/hgt/m/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `JT1/hgt/m/n' will be
+(Font)              scaled to size 23.94002pt on input line 1.
+LaTeX Font Info:    Font shape `JY1/hmc/bx/n' in size <24.88> not available
+(Font)              Font shape `JY1/hgt/m/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `JY1/hgt/m/n' will be
+(Font)              scaled to size 23.94002pt on input line 1.
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 1.
+)
+[1
+
+] (./master.toc)
+\tf@toc=\write3
+\openout3 = `master.toc'.
+
+ [2
+
+] (./master.lof)
+\tf@lof=\write4
+\openout4 = `master.lof'.
+
+ [3
+
+] (./master.lot)
+\tf@lot=\write5
+\openout5 = `master.lot'.
+
+ [4
+
+] (./master.aux) ) 
+Here is how much of TeX's memory you used:
+ 4168 strings out of 493682
+ 53774 string characters out of 6154347
+ 115444 words of memory out of 5000000
+ 7714 multiletter control sequences out of 15000+600000
+ 14209 words of font info for 60 fonts, out of 8000000 for 9000
+ 929 hyphenation exceptions out of 8191
+ 26i,6n,43p,351b,991s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on master.dvi (5 pages, 2476 bytes).
