@@ -33,8 +33,9 @@ build:
         name: Clean unneeded files
         code: |
           ls | grep master | grep -v -E '.tex$|.pdf$' | xargs rm
-    - leipert/git-push:
+    - lordlothar99/git-push:
         gh_oauth: $GIT_TOKEN
         repo: trileg/master-thesis
         branch: master
         basedir: .
+        ci_trigger: true
