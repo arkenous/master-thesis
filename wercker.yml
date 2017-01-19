@@ -32,7 +32,7 @@ build:
     - script:
         name: Clean files
         code: |
-          ls | grep master | grep -v -E '.tex$' | xargs rm
+          ls | grep master | grep -v -E '.tex$|.pdf$' | xargs rm
     - leipert/git-push:
         gh_oauth: $GIT_TOKEN
         repo: trileg/master-thesis
