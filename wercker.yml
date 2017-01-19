@@ -29,9 +29,6 @@ build:
           dvipdfmx master.dvi
           platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape master.tex
           dvipdfmx master.dvi
-
-deploy:
-  steps:
     - script:
         name: Clean files
         code: |
