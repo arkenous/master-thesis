@@ -24,6 +24,7 @@ build:
           redpen -c redpen-conf-ja.xml -f latex 0_Abstruct.tex
           redpen -c redpen-conf-ja.xml -f latex 1_Introduction.tex
           redpen -c redpen-conf-ja.xml -f latex 2_Related.tex
+          redpen -c redpen-conf-ja.xml -f latex 3_Knowledge.tex
     - script:
         name: Compile LaTeX documents
         code: |
