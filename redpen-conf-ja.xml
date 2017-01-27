@@ -1,17 +1,19 @@
 <redpen-conf lang="ja" type="zenkaku2">
     <validators>
         <validator name="SentenceLength"> <!-- 一文の長さが長すぎないかを見る -->
-            <property name="max_len" value="100"/>
+            <property name="max_len" value="120"/>
         </validator>
         <validator name="CommaNumber"/> <!-- 読点の数が多すぎないかを見る -->
         <validator name="WordNumber"> <!-- 一文の単語数が多すぎないかを見る -->
           <property name="max_num" value="60"/>
         </validator>
         <validator name="InvalidSymbol"/> <!-- 記号の種類をチェック -->
-        <validator name="KatakanaEndHyphen"/> <!-- カタカナ語の後ろの長音チェック -->
+        <validator name="KatakanaEndHyphen"> <!-- カタカナ語の後ろの長音チェック -->
+            <property name="list" value="ハッカー"/>
+        </validator>
         <validator name="KatakanaSpellCheck"/> <!-- 非常によく似たカタカナ語が使われていないかをチェック -->
         <validator name="SectionLength"> <!-- 一節の単語数が多すぎないかを見る -->
-            <property name="max_num" value="1500"/>
+            <property name="max_num" value="2000"/>
         </validator>
         <validator name="ParagraphNumber"/> <!-- 一節あたりの段落数が多すぎないかを見る -->
         <validator name="Contraction"/> <!-- 英語の省略形をチェック（論文で省略形は使用すべきでない） -->
@@ -40,10 +42,8 @@
         <validator name="DoubledConjunctiveParticleGa"/>
 
     </validators>
-    <!--
     <symbols>
-        <symbol name="FULL_STOP" value="．" invalid_chars="。."/>
-        <symbol name="COMMA" value="，" invalid_chars="、,"/>
+        <symbol name="SPACE" value=" " invalid-chars="　" />
+        <symbol name="PERCENT_SIGN" value="%" invalid-chars="％" />
     </symbols>
-    -->
 </redpen-conf>
