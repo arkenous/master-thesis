@@ -8,7 +8,7 @@
   * 研究目的
   * 本論文の構成
 * 関連研究
-* 基礎知識
+* 予備知識
   * 人工ニューラルネットワーク
     * Autoencoder
     * Denoising Autoencoder
