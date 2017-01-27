@@ -22,6 +22,7 @@ build:
         name: Proofread LaTeX documents by RedPen
         code: |
           redpen -c redpen-conf-ja.xml -f latex 0_Abstruct.tex
+          redpen -c redpen-conf-ja.xml -f latex 1_Introduction.tex
     - script:
         name: Compile LaTeX documents
         code: |
