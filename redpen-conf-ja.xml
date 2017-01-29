@@ -9,7 +9,7 @@
         </validator>
         <validator name="InvalidSymbol"/> <!-- 記号の種類をチェック -->
         <validator name="KatakanaEndHyphen"> <!-- カタカナ語の後ろの長音チェック -->
-            <property name="list" value="ハッカー"/>
+            <property name="list" value="ハッカー,エネルギー,エントロピー"/>
         </validator>
         <validator name="KatakanaSpellCheck"/> <!-- 非常によく似たカタカナ語が使われていないかをチェック -->
         <validator name="SectionLength"> <!-- 一節の単語数が多すぎないかを見る -->
