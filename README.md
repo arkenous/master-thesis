@@ -10,13 +10,9 @@
 * 関連研究
 * 予備知識
   * 人工ニューラルネットワーク
-    * Autoencoder
-    * Denoising Autoencoder
-    * Dropout
-  * CUDA
-  * JNI
-    * Android NDK
-  * (Socket通信システム)
+  * Autoencoder
+  * Denoising Autoencoder
+  * Dropout
 * 提案システム
   * システムの概要
   * システムの構成
