@@ -172,11 +172,24 @@ Autoencoderとは，図\ref{autoencoder}のような入力層と出力層のニ�
 Autoencoderの学習を進めた結果出力層の出力と教師信号との誤差が無くなった場合，中間層においてより少ないニューロン数で入力データの情報を表現できていると見ることができる．
 このことから，学習済みのAutoencoderからデコーダの部分を取り除き，エンコーダの出力を別のニューラルネットワークへの入力値として渡すことで，入力データの特徴抽出器として用いることができる．
 
-% @suppress
+% @suppress HankakuKana
 \subsection{Denoising Autoencoder}
-Denoising Autoencoderとは
+Denoising Autoencoderとは，Autoencoderで用いる入力データに対し一定の割合でランダムなノイズを付与し，ノイズを付与する前の元データを教師信号として与えて教師あり学習させたものである．
+入力データにランダムなノイズを付与して学習させることで，入力データの特徴を抽出することに加えてノイズの除去についても学習しなければならなくなり，ノイズに強くより汎化能力の高い特徴抽出器となる．
 
-% @suppress
+ノイズの付与方法として，入力データのうちランダムに選択したデータを0にするマスキングノイズや，0か1にする胡麻塩ノイズなど様々なものがある．
+
+% @suppress HankakuKana
 \subsection{Dropout}
-Dropoutとは
+Dropoutとは，図\ref{dropout}のように一定の割合でランダムに一部のニューロンを無視して学習を行うものである．
+学習後のニューラルネットワークで推定を行う際は，各ニューロンの出力値にDropoutした割合を掛ける．
 
+ニューラルネットワークの学習時にランダムで一部のニューロンを無視することから，複数の独立したニューラルネットワークを学習しているとみなすことができる．
+そして推定時にはそれらニューラルネットワークの出力の平均値を求めているため，汎化能力がより高くなる．
+
+\begin{figure}[hbtp]
+  \centering
+  \includegraphics[bb=0 0 507 506, width=8cm]{Figures/dropout.pdf}
+  \caption{Dropout}
+  \label{dropout}
+\end{figure}
