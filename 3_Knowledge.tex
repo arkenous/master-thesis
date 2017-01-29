@@ -156,9 +156,20 @@ new\_w_{ji} = old\_w_{ji} - \frac{\alpha}{\sqrt{new\_\hat{\nu}} + \epsilon} new\
 
 他にも様々なアルゴリズムが提案されている．↲
 
-% @suppress
 \subsection{Autoencoder}
-Autoencoderとは
+Autoencoderとは，図\ref{autoencoder}のような入力層と出力層のニューロン数を入力データの次元数と同数にし，中間層のニューロン数を一定の割合で削減した3層構造のニューラルネットワークにおいて，入力データと教師信号に同じデータを用いて教師あり学習させたものである．
+入力層から中間層への処理の部分をエンコーダ，中間層から出力層への部分をデコーダと呼ぶ．
+中間層と出力層の活性化関数は自由に選ぶことができるが，出力層の出力値が教師信号を表現できるような活性化関数を選ばなければならない．
+
+\begin{figure}[hbtp]
+  \centering
+  \includegraphics[bb=0 0 507 506, width=8cm]{Figures/autoencoder.pdf}
+  \caption{Autoencoder}
+  \label{autoencoder}
+\end{figure}
+
+Autoencoderの学習を進めた結果出力層の出力と教師信号との誤差が無くなった場合，中間層においてより少ないニューロン数で入力データの情報を表現できていると見ることができる．
+このことから，学習済みのAutoencoderからデコーダの部分を取り除き，エンコーダの出力を別のニューラルネットワークへの入力値として渡すことで，入力データの特徴抽出器として用いることができる．
 
 % @suppress
 \subsection{Denoising Autoencoder}
@@ -168,6 +179,3 @@ Denoising Autoencoderとは
 \subsection{Dropout}
 Dropoutとは
 
-% @suppress
-\section{CUDA}
-CUDAとは
