@@ -130,7 +130,7 @@ new\_w_{ji} = old\_w_{ji} - \eta \delta_j x_i - \eta \lambda old\_w_{ji}．↲
 $- \eta \lambda old\_w_{ji}$は荷重減衰と呼ばれるもので，$\lambda$を正の小さな定数に設定することで傾きがゼロの場合でも結合荷重を減らすことができるというものである．↲
 $\eta$の値が結合荷重の更新に強く影響するため，通常は学習の初期段階では大きめの値にし，学習が進むにつれて小さくしていく．↲
 
-次に，AdaGradというものがある（式\ref{adagrad}）．↲
+次に，AdaGrad\cite{3-adagrad}というものがある（式\ref{adagrad}）．↲
 \begin{eqnarray}↲
 \label{adagrad}↲
 new\_g_{ji} = old\_g_{ji} + (\delta_j x_i)^2． \nonumber \\↲
@@ -139,9 +139,9 @@ new\_w_{ji} = old\_w_{ji} - \frac{\eta}{\sqrt{new\_g_{ji} + \epsilon}} \delta_j 
 ↲
 これは，過去の傾きの二乗和を結合荷重ごとに覚えておき（$new\_g_{ji}$），その平方根で$\eta$を割ったものを学習率とする．↲
 これにより，総更新量が少ない結合荷重はより大きな幅で，総更新量が多い結合荷重はより小さな幅で更新がなされる．↲
-この方式では，学習率が自動的に調整される．↲
+この方式では，学習率が自動的に調整される\cite{3-adagrad-detail}．↲
 
-また，Adamというものがある（式\ref{adam}）．
+また，Adam\cite{3-adam}というものがある（式\ref{adam}）．
 \begin{eqnarray}
 \label{adam}
 new\_m = \beta_1 old\_m + (1 - \beta_1) \delta_j x_i．\nonumber \\
@@ -152,7 +152,7 @@ new\_w_{ji} = old\_w_{ji} - \frac{\alpha}{\sqrt{new\_\hat{\nu}} + \epsilon} new\
 \end{eqnarray}
 ↲
 まず，傾きの一次モーメント（平均値）と二次モーメント（分散した平方偏差）の概算値を求める（$new\_m$及び$new\_\nu$）．
-そしてこれらの偏りをバイアス補正した推定値を計算することで小さくし（$new\_\hat{m}$及び$new\_\hat{\nu}$），これらを用いて結合荷重の更新を行う．
+そしてこれらの偏りをバイアス補正した推定値を計算することで小さくし（$new\_\hat{m}$及び$new\_\hat{\nu}$），これらを用いて結合荷重の更新を行う\cite{3-adam-detail}．
 
 他にも様々なアルゴリズムが提案されている．↲
 
