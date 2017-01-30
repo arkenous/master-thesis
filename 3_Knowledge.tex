@@ -190,3 +190,16 @@ Dropoutとは，図\ref{dropout}のように一定の割合でランダムに一
   \caption{Dropout}
   \label{dropout}
 \end{figure}
+
+\section{モーションデータの取得}
+本システムは，モーションデータの取得にAndroid端末で一般的に搭載されている加速度センサ（TYPE\_LINEAR\_ACCELERATION）と角速度センサ（TYPE\_GYROSCOPE）を用いる．
+モーションセンサの座標系は図\ref{sensor}のようになっており，直線で示した方向に端末を動かすことで正の加速度が得られ，曲線で示した方向に端末を回転させることで正の角速度が得られる\cite{3-sensor-coordinate}．
+センサ登録時に指定できるモーションデータの取得間隔はSENSOR\_DELAY\_FASTESTを指定しており，研究で使用したLGエレクトロニクス社とGoogle社によって開発されたNexus 5では，およそ5ミリ秒間隔でモーションデータが取得されていることを確認した．
+ただし，SENSOR\_DELAY\_FASTESTなどによる取得間隔の指定はあくまでシステムへのヒントであり，システムによって変動する可能性がある\cite{3-sensor-delay}．
+
+\begin{figure}[hbtp]
+  \centering
+  \includegraphics[bb=0 0 372 469, width=8cm]{Figures/sensor.pdf}
+  \caption{モーションセンサの座標系}
+  \label{sensor}
+\end{figure}
