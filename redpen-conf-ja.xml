@@ -4,7 +4,7 @@
             <property name="max_len" value="140"/>
         </validator>
         <validator name="InvalidExpression">
-            <property name="dict", "invalidExpression.dict"/>
+            <property name="dict", value="RedPen-dict/invalidExpression.dict"/>
         </validator>
         <validator name="CommaNumber"/> <!-- 読点の数が多すぎないかを見る -->
         <validator name="WordNumber"> <!-- 一文の単語数が多すぎないかを見る -->
