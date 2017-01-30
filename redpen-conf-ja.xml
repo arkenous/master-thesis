@@ -3,6 +3,9 @@
         <validator name="SentenceLength"> <!-- 一文の長さが長すぎないかを見る -->
             <property name="max_len" value="140"/>
         </validator>
+        <validator name="InvalidExpression">
+            <property name="dict", "invalidExpression.dict"/>
+        </validator>
         <validator name="CommaNumber"/> <!-- 読点の数が多すぎないかを見る -->
         <validator name="WordNumber"> <!-- 一文の単語数が多すぎないかを見る -->
           <property name="max_num" value="70"/>
@@ -30,7 +33,7 @@
 
         <!--<validator name="SpaceBetweenAlphabeticalWord" />-->
         <!--<validator name="DoubledJoshi"/>-->
-        <validator name="HankakuKana"/>
+        <!--<validator name="HankakuKana"/>-->
         <validator name="Okurigana"/>
         <validator name="VoidSection"/>
         <validator name="SectionLevel"/>
