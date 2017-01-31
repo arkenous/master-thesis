@@ -83,6 +83,30 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 青色で示した線がローパスフィルタ処理前のグラフ，赤色で示した線が処理後のグラフである．
 
 \subsection{加速度から変位，角速度から角度への変換}
+% ドリフトの影響があるため，足し合わせていく処理はしない
+ローパスフィルタ処理したデータに対して，次に加速度から変位，角速度から角度に変換する処理を行う．
+加速度から変位への変換は式\ref{accel-to-displacement}で行う．
+\begin{equation}
+\label{accel-to-displacement}
+x = \frac{1}{2} a t^2．
+\end{equation}
+
+$x$は変位を，$a$は加速度を，$t$は加速度データの取得間隔を表している．
+なお，本システムでは初速度を考慮しない．
+この処理をソースコード\ref{source-accel-to-displacement}に示す．
+
+\lstinputlisting[caption=加速度から変位への変換, label=source-accel-to-displacement, style=MyJava]{Code/accelToDisplacement.java}
+
+また，角速度から角度への変換は式\ref{gyro-to-angle}で行う．
+\begin{equation}
+\label{gyro-to-angle}
+y = g t．
+\end{equation}
+
+$y$は角度を，$g$は角速度を，$t$は角速度データの取得間隔を表している．
+その処理をソースコード\ref{source-gyro-to-angle}に示す．
+
+\lstinputlisting[caption=角速度から角度への変換, label=source-gyro-to-angle, style=MyJava]{Code/gyroToAngle.java}
 
 \subsection{変位データを角度データで回転}
 
