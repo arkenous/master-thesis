@@ -109,7 +109,40 @@ $y$は角度を，$g$は角速度を，$t$は角速度データの取得間隔�
 \lstinputlisting[caption=角速度から角度への変換, label=source-gyro-to-angle, style=MyJava]{Code/gyroToAngle.java}
 
 \subsection{変位データを角度データで回転}
+加速度から変位，角速度から角度へ変換したデータに対して，次は変位データを角度データで回転させる処理を行う．
+この処理をソースコード\ref{source-rotate-vector}に示す．
 
+\lstinputlisting[caption=変位データの角度データを用いた回転，合成, label=source-rotate-vector, style=MyJava]{Code/rotateVector.java}
+
+変位データを回転させるcombineメソッドには，変位データの他にモーションデータ取得開始時点からどれだけ回転したかを保持するangleX・angleY・angleZのラジアンを渡している．
+この際，各軸を中心に反時計回りで変位データを回転させるために，それぞれの正負を逆にした上でそのラジアンを求めている．
+
+combineメソッドでは，渡されたラジアンについてそれぞれ$\sin$と$\cos$を求め，式\ref{rotate-matrix}の回転行列を用いてX軸・Y軸・Z軸の順に回転させている．
+
+\begin{eqnarray}↲
+\label{rotate-matrix}↲
+R_x(\theta) = \left(↲
+    \begin{array}{ccc}↲
+        1 & 0 & 0 \\↲
+        0 & \cos\theta & -\sin\theta \\↲
+        0 & \sin\theta & \cos\theta↲
+    \end{array}↲
+\right)． \nonumber \\↲
+R_y(\theta) = \left(↲
+    \begin{array}{ccc}↲
+        \cos\theta & 0 & \sin\theta \\↲
+        0 & 1 & 0 \\↲
+        -\sin\theta & 0 & \cos\theta↲
+    \end{array}↲
+\right)． \nonumber \\↲
+R_z(\theta) = \left(↲
+    \begin{array}{ccc}↲
+        \cos\theta & -\sin\theta & 0 \\↲
+        \sin\theta & \cos\theta & 0 \\↲
+        0 & 0 & 1↲
+    \end{array}↲
+\right)．
+\end{eqnarray}↲
 
 % @suppress
 \section{ニューラルネットワークによる学習と識別}
