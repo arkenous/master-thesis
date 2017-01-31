@@ -56,8 +56,36 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 認証に成功すれば図\ref{auth-succeed}のダイアログが表示され，``OK''ボタンを押すことでスタート画面に遷移する．
 認証に失敗すれば図\ref{auth-failure}のダイアログが表示され，``OK''ボタンを押すことでモーションデータの取得状態がリセットされ，再度個人認証を行える．
 
-% @suppress
 \section{モーションデータの加工}
+登録モードと認証モードのいずれも，モーションセンサから得られたデータはニューラルネットワークで用いる前に，``フーリエ変換を用いたローパスフィルタ''，``角速度から変位，角速度から角度への変換''，``変位データを角度データで回転''という三つの加工を行う．
+
+\subsection{ローパスフィルタ}
+モーションを入力している際の手の震えなどによるモーションデータへの影響を抑えるために，フーリエ変換を用いたローパスフィルタ処理を実装している．
+時間軸領域で表されるデータをフーリエ変換を用いて周波数領域に変換すると，モーション入力中の手の震えなどによるデータが高周波成分として現れる．
+この高周波成分を取り除いた上で元の時間軸領域のデータに逆変換するローパスフィルタ処理を行うことで，手の震えなどによる影響の少ないデータを得られる．
+
+フーリエ変換の実装には，CERNのColt Project\cite{4-colt-project}で開発された科学技術計算用ライブラリであるColtをマルチスレッド化したParallel Colt\cite{4-parallel-colt}に含まれている，JTransforms\cite{4-jtransforms}を用いた．
+
+この処理をソースコード\ref{source-lowpass}に示す．
+
+\lstinputlisting[caption=ローパスフィルタ, label=source-lowpass, style=MyJava]{Code/lowpass.java}
+
+% ローパスフィルタの比較グラフ
+ローパスフィルタ処理によるデータの変化を示したグラフを図\ref{graph-lowpass}に示す．
+
+\begin{figure}[hbtp]
+  \centering
+  \includegraphics[bb=0 0 360 216, width=8cm]{Graphs/lowpass.pdf}
+  \caption{ローパスフィルタ処理によるデータの変化}
+  \label{graph-lowpass}
+\end{figure}
+
+青色で示した線がローパスフィルタ処理前のグラフ，赤色で示した線が処理後のグラフである．
+
+\subsection{加速度から変位，角速度から角度への変換}
+
+\subsection{変位データを角度データで回転}
+
 
 % @suppress
-\section{人工ニューラルネットワークによる学習と識別}
+\section{ニューラルネットワークによる学習と識別}
