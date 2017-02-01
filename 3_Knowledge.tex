@@ -30,116 +30,107 @@ y_j = f(\sum_i w_{ji} x_i + b_j)．
 
 ニューロンの学習を行う際は，図\ref{bp}のような縦軸に損失関数（エネルギー関数）$E$，横軸に結合荷重$w$を置いたグラフで，$E$を最小化するような$opt\_w$に近づくように結合荷重を更新していく（勾配法）．
 
-\begin{figure}[hbtp]↲
-    \centering↲
-    \includegraphics[bb=0 0 749 592, width=9cm]{Figures/bp.pdf}↲
-    \caption{ニューロンの結合荷重の更新}↲
-    \label{bp}↲
-\end{figure}↲
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[bb=0 0 749 592, width=9cm]{Figures/bp.pdf}
+    \caption{ニューロンの結合荷重の更新}
+    \label{bp}
+\end{figure}
 
 更新した$new\_w$は，式\ref{w-new}で得られる．
-\begin{equation}↲
-\label{w-new}↲
-new\_w = old\_w + \Delta w．↲
-\end{equation}↲
+\begin{equation}
+\label{w-new}
+new\_w = old\_w + \Delta w．
+\end{equation}
 
 式\ref{w-new}における$\Delta w$が結合荷重の変更量となるのだが，これは式\ref{delta-w}で得られる．
-\begin{equation}↲
-\label{delta-w}↲
-\Delta w = - \eta \frac{\partial E}{\partial w}．↲
-\end{equation}↲
+\begin{equation}
+\label{delta-w}
+\Delta w = - \eta \frac{\partial E}{\partial w}．
+\end{equation}
 
 $\eta$は学習率を表し，どれだけの割合で結合荷重を更新するかを示している．
 この値を小さくすることで，結合荷重の更新幅が小さくなる．
-その後ろの$\frac{\partial E}{\partial w}$は傾きを示す．↲
-結合荷重$w$が$opt\_w$に近づくためには，傾きが正の場合は$\Delta w$が負に，傾きが負の場合は$\Delta w$が正になる必要がある．↲
-そのため，$\eta \frac{\partial E}{\partial w}$の結果得られた値の符号を逆にしている．↲
+その後ろの$\frac{\partial E}{\partial w}$は傾きを示す．
+結合荷重$w$が$opt\_w$に近づくためには，傾きが正の場合は$\Delta w$が負に，傾きが負の場合は$\Delta w$が正になる必要がある．
+そのため，$\eta \frac{\partial E}{\partial w}$の結果得られた値の符号を逆にしている．
 
 結合荷重の変更量$\Delta w$を得るために必要な傾き$\frac{\partial E}{\partial w}$は，式\ref{ew}で得られる．
-\begin{equation}↲
-\label{ew}↲
-\frac{\partial E_n}{\partial w_{ji}} = \frac{\partial E_n}{\partial a_j} \frac{\partial a_j}{\partial w_{ji}} = \frac{\partial E_n}{\partial a_j} x_i．↲
-\end{equation}↲
-↲
-式\ref{ew}は，合成関数の微分の公式を用いて式変形を行っている．↲
-$x_i$は学習中のニューロンに入力された値を示している．↲
-ここで，$\frac{\partial E_n}{\partial a_j}$を$\delta_j$と置く．↲
+\begin{equation}
+\label{ew}
+\frac{\partial E_n}{\partial w_{ji}} = \frac{\partial E_n}{\partial a_j} \frac{\partial a_j}{\partial w_{ji}} = \frac{\partial E_n}{\partial a_j} x_i．
+\end{equation}
+
+式\ref{ew}は，合成関数の微分の公式を用いて式変形を行っている．
+$x_i$は学習中のニューロンに入力された値を示している．
+ここで，$\frac{\partial E_n}{\partial a_j}$を$\delta_j$と置く．
 この$\delta_j$と学習中のニューロンの入力値$x_i$を掛けることで傾きが得られ，これに$- \eta$を掛けることで結合荷重の変更量$\Delta w$が得られる．
 
 前述したように，損失関数を用いて教師信号との誤差を測るために用いるのは出力層の出力値である．
 ここで，出力層ニューロンの活性化関数と損失関数が特定の組み合わせであれば，$\delta_j$は式\ref{easy-delta}で得られる．
-\begin{equation}↲
-\label{easy-delta}↲
-\delta_j = y_j - t_j．↲
-\end{equation}↲
+\begin{equation}
+\label{easy-delta}
+\delta_j = y_j - t_j．
+\end{equation}
 
 式\ref{easy-delta}における$y_j$は出力層より得られた出力値，$t_j$は教師信号である．
 このように極めて単純な計算式で$\delta_j$を得られるため，基本的に出力層では損失関数と活性化関数を合わせて考えるのが一般的である．
 
 まず，ニューラルネットワークで回帰を行う場合は，活性化関数と損失関数にそれぞれ恒等写像（式\ref{identity}）と最小二乗誤差（式\ref{lsm}）を用いる．
-\begin{equation}↲
-\label{identity}↲
-f(a_j) = a_j．↲
-\end{equation}↲
-↲
-\begin{equation}↲
-\label{lsm}↲
-E_n = \frac{1}{2} \sum_{k=1}^K (y_{nk} - t_{nk})^2．↲
-\end{equation}↲
+\begin{equation}
+\label{identity}
+f(a_j) = a_j．
+\end{equation}
+
+\begin{equation}
+\label{lsm}
+E_n = \frac{1}{2} \sum_{k=1}^K (y_{nk} - t_{nk})^2．
+\end{equation}
 
 ニューラルネットワークで二値分類を行う場合は，活性化関数と損失関数にそれぞれシグモイド関数（式\ref{sigmoid}）と交差エントロピー誤差（式\ref{ce-1}）を用いる．
-\begin{equation}↲
-\label{sigmoid}↲
-f(a_j) = \frac{1}{1 + e^{-a_j}}．↲
-\end{equation}↲
-↲
-\begin{equation}↲
-\label{ce-1}↲
-E_n = - \sum_{k=1}^K \{t_{nk} \ln y_{nk} + (1 - t_{nk}) \ln (1 - y_{nk)}\}．↲
-\end{equation}↲
+\begin{equation}
+\label{sigmoid}
+f(a_j) = \frac{1}{1 + e^{-a_j}}．
+\end{equation}
+
+\begin{equation}
+\label{ce-1}
+E_n = - \sum_{k=1}^K \{t_{nk} \ln y_{nk} + (1 - t_{nk}) \ln (1 - y_{nk)}\}．
+\end{equation}
 
 また，ニューラルネットワークで多クラス分類を行う場合は，活性化関数と損失関数にそれぞれソフトマックス関数（式\ref{softmax}）と交差エントロピー誤差（式\ref{ce-2}）を用いる．
-\begin{equation}↲
-\label{softmax}↲
-f(a_j) = \frac{e^{a_j}}{\sum_{k=1}^K e^{a_k}}．↲
-\end{equation}↲
-↲
-\begin{equation}↲
-\label{ce-2}↲
-E_n = - \sum_{k=1}^K t_{nk} \ln y_{nk}．↲
-\end{equation}↲
+\begin{equation}
+\label{softmax}
+f(a_j) = \frac{e^{a_j}}{\sum_{k=1}^K e^{a_k}}．
+\end{equation}
+
+\begin{equation}
+\label{ce-2}
+E_n = - \sum_{k=1}^K t_{nk} \ln y_{nk}．
+\end{equation}
 
 このような組み合わせで出力層を構築することで，前述した式\ref{easy-delta}で$\delta_j$を得られる．
 
 ニューラルネットワークが入力層を含めて3層以上あるような複雑なもので中間層を学習したい場合，この$\delta_j$は式\ref{delta-2}で得られる．
-\begin{equation}↲
-\label{delta-2}↲
-\delta_j = \frac{\partial f}{\partial a_j} \sum_{k=1}^K w_{kj} \delta_k．↲
-\end{equation}↲
+\begin{equation}
+\label{delta-2}
+\delta_j = \frac{\partial f}{\partial a_j} \sum_{k=1}^K w_{kj} \delta_k．
+\end{equation}
 
 つまり，学習しているニューロンの活性化関数を微分したものと，出力層に一つ近い層の各結合荷重と$\delta$を掛けたものの総和を掛けることで，中間層の$\delta_j$が得られる．
 
 以上で学習に必要な傾きが得られるが，これを用いた結合荷重の更新方法として式（\ref{w-new}）を改良したアルゴリズムが複数考案されている．
 
-まず，確率的勾配降下（SGD）というものがある（式\ref{sgd}）．
-\begin{equation}↲
-\label{sgd}↲
-new\_w_{ji} = old\_w_{ji} - \eta \delta_j x_i - \eta \lambda old\_w_{ji}．↲
-\end{equation}↲
-↲
-$- \eta \lambda old\_w_{ji}$は荷重減衰と呼ばれるもので，$\lambda$を正の小さな定数に設定することで傾きがゼロの場合でも結合荷重を減らすことができるというものである．↲
-$\eta$の値が結合荷重の更新に強く影響するため，通常は学習の初期段階では大きめの値にし，学習が進むにつれて小さくしていく．↲
+まず，AdaGrad\cite{3-adagrad}というものがある（式\ref{adagrad}）．
+\begin{eqnarray}
+\label{adagrad}
+new\_g_{ji} = old\_g_{ji} + (\delta_j x_i)^2． \nonumber \\
+new\_w_{ji} = old\_w_{ji} - \frac{\eta}{\sqrt{new\_g_{ji} + \epsilon}} \delta_j x_i．
+\end{eqnarray}
 
-次に，AdaGrad\cite{3-adagrad}というものがある（式\ref{adagrad}）．↲
-\begin{eqnarray}↲
-\label{adagrad}↲
-new\_g_{ji} = old\_g_{ji} + (\delta_j x_i)^2． \nonumber \\↲
-new\_w_{ji} = old\_w_{ji} - \frac{\eta}{\sqrt{new\_g_{ji} + \epsilon}} \delta_j x_i．↲
-\end{eqnarray}↲
-↲
-これは，過去の傾きの二乗和を結合荷重ごとに覚えておき（$new\_g_{ji}$），その平方根で$\eta$を割ったものを学習率とする．↲
-これにより，総更新量が少ない結合荷重はより大きな幅で，総更新量が多い結合荷重はより小さな幅で更新がなされる．↲
-この方式では，学習率が自動的に調整される\cite{3-adagrad-detail}．↲
+これは，過去の傾きの二乗和を結合荷重ごとに覚えておき（$new\_g_{ji}$），その平方根で$\eta$を割ったものを学習率とする．
+これにより，総更新量が少ない結合荷重はより大きな幅で，総更新量が多い結合荷重はより小さな幅で更新がなされる．
+この方式では，学習率が自動的に調整される\cite{3-adagrad-detail}．
 
 また，Adam\cite{3-adam}というものがある（式\ref{adam}）．
 \begin{eqnarray}
@@ -150,11 +141,11 @@ new\_\hat{m} = \frac{new\_m}{1 - \beta^t_1}．\nonumber \\
 new\_\hat{\nu} = \frac{new\_\nu}{1 - \beta^t_2}．\nonumber \\
 new\_w_{ji} = old\_w_{ji} - \frac{\alpha}{\sqrt{new\_\hat{\nu}} + \epsilon} new\_\hat{m}．
 \end{eqnarray}
-↲
+
 まず，傾きの一次モーメント（平均値）と二次モーメント（分散した平方偏差）の概算値を求める（$new\_m$及び$new\_\nu$）．
 そしてこれらの偏りをバイアス補正した推定値を計算することで小さくし（$new\_\hat{m}$及び$new\_\hat{\nu}$），これらを用いて結合荷重の更新を行う\cite{3-adam-detail}．
 
-他にも様々なアルゴリズムが提案されている．↲
+他にも様々なアルゴリズムが提案されている．
 
 \section{Autoencoder}
 Autoencoderとは，図\ref{autoencoder}のような入力層と出力層のニューロン数を入力データの次元数と同数にし，中間層のニューロン数を一定の割合で削減した3層構造のニューラルネットワークにおいて，入力データと教師信号に同じデータを用いて教師あり学習させたものである．
@@ -179,7 +170,7 @@ Denoising Autoencoderとは，Autoencoderで用いる入力データに対し一
 
 \section{Dropout}
 Dropoutとは，図\ref{dropout}のように一定の割合でランダムに一部のニューロンを無視して学習を行うものである．
-学習後のニューラルネットワークで推定を行う際は，各ニューロンの出力値にDropoutした割合を掛ける．
+学習後のニューラルネットワークで推定を行う際は，Dropoutした層における各ニューロンの出力値に1からDropoutした割合を引いた値を掛ける．
 
 ニューラルネットワークの学習時にランダムで一部のニューロンを無視することから，複数の独立したニューラルネットワークを学習しているとみなすことができる．
 そして推定時にはそれらニューラルネットワークから得られた出力の平均値を求めていると考えられるため，汎化能力がより高くなる．
