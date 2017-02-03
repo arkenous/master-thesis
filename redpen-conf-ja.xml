@@ -1,14 +1,14 @@
 <redpen-conf lang="ja" type="zenkaku2">
     <validators>
         <validator name="SentenceLength"> <!-- 一文の長さが長すぎないかを見る -->
-            <property name="max_len" value="140"/>
+            <property name="max_len" value="150"/>
         </validator>
         <validator name="InvalidExpression">
             <property name="dict" value="RedPen-dict/invalidExpression.dict"/>
         </validator>
         <validator name="CommaNumber"/> <!-- 読点の数が多すぎないかを見る -->
         <validator name="WordNumber"> <!-- 一文の単語数が多すぎないかを見る -->
-          <property name="max_num" value="70"/>
+          <property name="max_num" value="75"/>
         </validator>
         <validator name="InvalidSymbol"/> <!-- 記号の種類をチェック -->
         <validator name="KatakanaEndHyphen"> <!-- カタカナ語の後ろの長音チェック -->
