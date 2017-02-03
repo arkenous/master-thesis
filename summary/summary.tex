@@ -1,0 +1,67 @@
+\documentclass[11pt]{jarticle}
+\usepackage{newcent}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{color}
+\definecolor{purple}{rgb}{0.6,0,0.4}
+\definecolor{brown}{cmyk}{0,0.81,1,0.60}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\usepackage{listings,jlisting}
+\renewcommand{\lstlistingname}{ソースコード}
+\renewcommand{\slash}{/}
+\lstdefinestyle{MyJava} % JavaとXML，2つの言語を使いたかったので．style=MyJavaとかで使い分け
+{
+language=Java, % lstlisting内の言語の指定
+numbers=left, % 行番号を左端に表示する
+breaklines = true, % 行が長くなってしまった場合の改行を行う
+basicstyle={\small}, % 標準の書式設定
+identifierstyle={\small}, % 識別子のスタイル
+keywordstyle={\small\bfseries\color{purple}}, % キーワードのスタイル
+commentstyle={\small\itshape\color{gray}}, % コメントのスタイル
+stringstyle={\small\ttfamily\color{brown}}, % 文字列のスタイル
+frame=single, % 枠のスタイル
+tabsize=2, % タブ幅
+showstringspaces=false, % 空白を可視化するか
+}
+\lstdefinelanguage{XML} % XMLはあまり充実してないってさー
+{
+    morestring=[b]",
+    morestring=[s]{>}{<},
+    morecomment=[s]{<?}{?>},
+    stringstyle=\color{brown},
+    identifierstyle=\color{darkblue},
+    keywordstyle=\color{cyan},
+    morekeywords={xmlns,version,type}% list your attributes here
+}
+\lstdefinestyle{MyXML} % JavaとXM（ry
+{
+language=XML,
+numbers=left,
+breaklines=true,
+basicstyle={\small},
+identifierstyle={\small\color{darkblue}},
+keywordstyle={\small\bfseries\color{cyan}},
+commentstyle={\small\itshape\color{gray}},
+stringstyle={\small\ttfamily\color{brown}},
+frame=single,
+tabsize=2,
+showstringspaces=false,
+}
+\usepackage{ascmac}
+\usepackage{otf}
+\usepackage[master]{gaiyo}
+
+\title{スマートフォンのモーションセンサを利用した\\個人認証アプリケーションの開発に関する研究}
+\id{15M7112}
+\author{\UTF{9AD9}坂 賢佑}
+\teacher{小林 孝史}
+
+\begin{document}
+\maketitle
+
+\input{1_Introduction.tex}
+\input{2_System.tex}
+\input{3_Evaluation.tex}
+\input{4_Conclusion.tex}
+\end{document}

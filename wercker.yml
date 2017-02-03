@@ -19,26 +19,45 @@ build:
           mktexlsr
           updmap
     - script:
-        name: Proofread LaTeX documents by RedPen
+        name: Proofread thesis by RedPen
         code: |
-          redpen -c redpen-conf-ja.xml -f latex 0_Abstruct.tex
-          redpen -c redpen-conf-ja.xml -f latex 1_Introduction.tex
-          redpen -c redpen-conf-ja.xml -f latex 2_Related.tex
-          redpen -c redpen-conf-ja.xml -f latex 3_Knowledge.tex
-          redpen -c redpen-conf-ja.xml -f latex 4_System.tex
-          redpen -c redpen-conf-ja.xml -f latex 5_Evaluation.tex
-          redpen -c redpen-conf-ja.xml -f latex 6_Conclusion.tex
+          redpen -c redpen-conf-ja.xml -f latex thesis/0_Abstruct.tex
+          redpen -c redpen-conf-ja.xml -f latex thesis/1_Introduction.tex
+          redpen -c redpen-conf-ja.xml -f latex thesis/2_Related.tex
+          redpen -c redpen-conf-ja.xml -f latex thesis/3_Knowledge.tex
+          redpen -c redpen-conf-ja.xml -f latex thesis/4_System.tex
+          redpen -c redpen-conf-ja.xml -f latex thesis/5_Evaluation.tex
+          redpen -c redpen-conf-ja.xml -f latex thesis/6_Conclusion.tex
     - script:
-        name: Compile LaTeX documents
+        name: Compile thesis
         code: |
-          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape master.tex
-          dvipdfmx master.dvi
-          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape master.tex
-          dvipdfmx master.dvi
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape thesis/thesis.tex
+          dvipdfmx thesis/thesis.dvi
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape thesis/thesis.tex
+          dvipdfmx thesis/thesis.dvi
+    - script:
+        name: Proofread summary by RedPen
+        code: |
+          redpen -c redpen-conf-ja.xml -f latex summary/1_Introduction.tex
+          redpen -c redpen-conf-ja.xml -f latex summary/2_System.tex
+          redpen -c redpen-conf-ja.xml -f latex summary/3_Evaluation.tex
+          redpen -c redpen-conf-ja.xml -f latex summary/4_Conclusion.tex
+    - script:
+        name: Compile summary
+        code: |
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape summary/summary.tex
+          dvipdfmx summary/summary.dvi
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape summary/summary.tex
+          dvipdfmx summary/summary.dvi
     - script:
         name: Clean unneeded files
         code: |
-          ls | grep master | grep -v -E '.tex$|.pdf$' | xargs rm
+          cd thesis
+          ls | grep thesis | grep -v -E '.tex$|.pdf$' | xargs rm
+          cd ..
+          cd summary
+          ls | grep summary | grep -v -E '.tex$|.pdf$' | xargs rm
+          cd ..
     - leipert/git-push:
         gh_oauth: $GIT_TOKEN
         repo: trileg/master-thesis
