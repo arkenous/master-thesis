@@ -1,4 +1,3 @@
-% @suppress DuplicatedSection InvalidSymbol
 \chapter{提案システム}
 本章では，本研究で開発したスマートフォンのモーションセンサを利用した個人認証システムについて説明する．
 
@@ -14,6 +13,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 画面下部にある``Start''ボタンを押すことで，図\ref{select-mode}の動作モード選択ダイアログが表示される．
 ``Registration''を選択すると登録モードに，``Authentication''を選択すると認証モードに遷移する．
 
+% @suppress DuplicatedSection
 \subsection{登録モード}
 登録モードに遷移すると，図\ref{reg-input-name}のユーザ名入力画面が表示される．
 ここでは登録するユーザ名を入力する．
@@ -38,6 +38,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 何らかの原因で識別器の学習ができなかった場合は図\ref{reg-error}のダイアログが表示される．
 ``OK''ボタンを押すことでモーションデータの取得状態がリセットされるので再度モーションを入力する．
 
+% @suppress DuplicatedSection
 \subsection{認証モード}
 認証モードに遷移すると，図\ref{auth-input-name}のユーザ名入力画面が表示される．
 ここでは認証するユーザ名を入力する．
@@ -68,7 +69,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 登録モードでは，最も入力時間の長かったデータを基準に他のデータに対して末尾にゼロを補填する方法を用いる．
 認証モードでは，登録時に用いたデータの長さを基準に新たに入力されたデータが短い場合は末尾にゼロを補填し，長い場合は末尾を切り落とす方法でデータ数を均一化している．
 
-% @suppress ParagraphNumber
+% @suppress ParagraphNumber InvalidSymbol
 \subsection{ローパスフィルタ}
 モーションを入力している際に生じる手の震えなどによるモーションデータへの影響を抑えるために，フーリエ変換を用いたローパスフィルタ処理を実装している．
 時間軸領域で表されるデータをフーリエ変換を用いて周波数領域に変換すると，モーション入力中に生じた手の震えなどによるデータが高周波成分として現れる．
@@ -92,7 +93,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 
 青色で示した線がローパスフィルタ処理前のグラフ，赤色で示した線が処理後のグラフである．
 
-% @suppress ParagraphNumber
+% @suppress ParagraphNumber InvalidSymbol
 \subsection{加速度から変位，角速度から角度への変換}
 % ドリフトの影響があるため，足し合わせていく処理はしない
 ローパスフィルタ処理したデータに対して，次に加速度から変位，角速度から角度に変換する処理を行う．
@@ -119,6 +120,7 @@ $y$は角度を，$g$は角速度を，$t$は角速度データの取得間隔�
 
 \lstinputlisting[caption=角速度から角度への変換, label=source-gyro-to-angle, style=MyJava]{Code/gyroToAngle.java}
 
+% @suppress InvalidSymbol
 \subsection{変位データを角度データで回転}
 加速度から変位，角速度から角度へ変換したデータに対して，次は変位データを角度データで回転させる処理を行う．
 この処理をソースコード\ref{source-rotate-vector}に示す．
@@ -167,9 +169,9 @@ R_z(\theta) = \left(
 \end{figure}
 
 本システムでは，基本的にNVIDIA製GPUを搭載しCUDA\cite{4-cuda}を利用したGPGPUによる高速演算が可能な計算機上で動作するプログラム（以下，サーバ）でニューラルネットワークに関する処理を実行する．
-Android端末上で動作するプログラム（以下，クライアント）とのデータのやりとりにはTCPソケットを用いる．
+Android端末上で動作するプログラム（以下，クライアント）とサーバでデータをやりとりする際にはTCPソケットを用いる．
 
-% @suppress ParagraphNumber
+% @suppress ParagraphNumber DuplicatedSection InvalidSymbol
 \subsection{登録モード}
 登録モードでは，動作モード値・ユーザ名・前述の加工を行ったモーションデータをTCPソケットを用いてサーバに送信する．
 サーバ側ではこれらデータをJavaで書かれたプログラムで受信し，JNI\cite{4-jni}を用いてC++で書かれたニューラルネットワークプログラムに処理を移す．
@@ -203,6 +205,7 @@ Denoising Autoencoderの学習が終われば，Denoising Autoencoderのパラ�
 %Android端末側でうけとって，保存してetc
 クライアント側はこのデータを受け取り，暗号化した上で他アプリからの読み書きができない形で保存する．
 
+% @suppress DuplicatedSection
 \subsection{認証モード}
 認証モードでは，動作モード値・ユーザ名・前述の加工を行ったモーションデータ・登録モードにおいて保存した学習済みニューラルネットワークのパラメータをTCPソケットを用いてサーバに送信する．
 サーバ側ではこれらデータをJavaで書かれたプログラムで受信し，JNIを用いてC++で書かれたニューラルネットワークプログラムに処理を移す．
