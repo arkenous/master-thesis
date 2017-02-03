@@ -25,6 +25,9 @@ build:
           redpen -c redpen-conf-ja.xml -f latex 1_Introduction.tex
           redpen -c redpen-conf-ja.xml -f latex 2_Related.tex
           redpen -c redpen-conf-ja.xml -f latex 3_Knowledge.tex
+          redpen -c redpen-conf-ja.xml -f latex 4_System.tex
+          redpen -c redpen-conf-ja.xml -f latex 5_Evaluation.tex
+          redpen -c redpen-conf-ja.xml -f latex 6_Conclusion.tex
     - script:
         name: Compile LaTeX documents
         code: |
