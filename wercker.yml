@@ -31,10 +31,12 @@ build:
     - script:
         name: Compile thesis
         code: |
-          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape thesis/thesis.tex
-          dvipdfmx thesis/thesis.dvi
-          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape thesis/thesis.tex
-          dvipdfmx thesis/thesis.dvi
+          cd thesis
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape thesis.tex
+          dvipdfmx thesis.dvi
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape thesis.tex
+          dvipdfmx thesis.dvi
+          cd ..
     - script:
         name: Proofread summary by RedPen
         code: |
@@ -45,10 +47,12 @@ build:
     - script:
         name: Compile summary
         code: |
-          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape summary/summary.tex
-          dvipdfmx summary/summary.dvi
-          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape summary/summary.tex
-          dvipdfmx summary/summary.dvi
+          cd summary
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape summary.tex
+          dvipdfmx summary.dvi
+          platex -halt-on-error -interaction=nonstopmode -file-line-error -no-shell-escape summary.tex
+          dvipdfmx summary.dvi
+          cd ..
     - script:
         name: Clean unneeded files
         code: |
