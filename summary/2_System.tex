@@ -1,4 +1,4 @@
-% @suppress JapaneseAmbiguousNounConjunction
+% @suppress JapaneseAmbiguousNounConjunction CommaNumber JapaneseNumberExpression
 \section{システム概要}
 本システムは，Android端末に一般的に搭載されている加速度センサと角速度センサを用いてモーションデータ（以下，データ）を収集し，人工ニューラルネットワークの一つであるDenoising Autoencoder（以下，dA）とその後ろに識別用ニューロンを繋げた識別器を用いて個人認証を行う．
 %データの取得間隔はAndroid APIで用意された``SENSOR\_DELAY\_FASTEST''を指定しており，本システムの開発時に使用したNexus5ではおよそ5ミリ秒間隔でデータが取得できていることを確認した．
