@@ -37,7 +37,7 @@
         <validator name="Okurigana"/>
         <validator name="VoidSection"/>
         <validator name="SectionLevel"/>
-        <!--<validator name="JapaneseAmbiguousNounConjunction"/>-->
+        <validator name="JapaneseAmbiguousNounConjunction"/>
         <validator name="JapaneseNumberExpression">
           <property name="mode" value="kansuji"/>
         </validator>
