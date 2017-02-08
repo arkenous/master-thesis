@@ -50,6 +50,13 @@ showstringspaces=false,
 }
 \usepackage{ascmac}
 \usepackage{otf}
+
+% 図と表を並べるため
+\makeatletter
+\newcommand{\figcaption}[1]{\def\@captype{figure}\caption{#1}}
+\newcommand{\tblcaption}[1]{\def\@captype{table}\caption{#1}}
+\makeatother
+
 \usepackage[master]{gaiyo}
 
 \title{スマートフォンのモーションセンサを利用した\\個人認証アプリケーションの開発に関する研究}
