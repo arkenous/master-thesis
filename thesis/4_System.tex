@@ -4,7 +4,7 @@
 \section{システムの概要}
 本システムは，Android端末に一般的に搭載されている加速度センサと角速度センサを用いてモーションデータを収集し，Denoising Autoencoderとその後ろに識別用ニューロンを繋げた識別器を用いて個人認証を行う．
 本システムには，登録モードと認証モードという二つの動作モードがある．
-登録モードでは，入力されたモーションデータの一部を平均0で分散1のガウシアンノイズを用いて上書きしたものを用いて，Denoising Autoencoderで特徴を学習させる．
+登録モードでは，入力されたモーションデータの一部を平均が0で分散が1のガウシアンノイズを用いて上書きしたものを用いて，Denoising Autoencoderで特徴を学習させる．
 その後識別用ニューロンを繋いで入力データに対する教師信号として0.0を，入力データと同じ値域・次元数で生成した乱数でデータの一部を上書きしたダミーデータに対する教師信号として1.0を与えて識別器の学習を行う．
 認証モードでは，入力されたモーションデータを学習済みの識別器に入力し，得られた出力を用いて個人認証を行う．
 
@@ -171,7 +171,7 @@ R_z(\theta) = \left(
 本システムでは，基本的にNVIDIA製GPUを搭載しCUDA\cite{4-cuda}を利用したGPGPUによる高速演算が可能な計算機上で動作するプログラム（以下，サーバ）でニューラルネットワークに関する処理を実行する．
 Android端末上で動作するプログラム（以下，クライアント）とサーバでデータをやりとりする際にはTCPソケットを用いる．
 
-% @suppress ParagraphNumber DuplicatedSection InvalidSymbol
+% @suppress ParagraphNumber DuplicatedSection InvalidSymbol JapaneseAmbigousNounConjunction
 \subsection{登録モード}
 登録モードでは，動作モード値・ユーザ名・前述の加工を行ったモーションデータをTCPソケットを用いてサーバに送信する．
 サーバ側ではこれらデータをJavaで書かれたプログラムで受信し，JNI\cite{4-jni}を用いてC++で書かれたニューラルネットワークプログラムに処理を移す．
@@ -183,7 +183,7 @@ Android端末上で動作するプログラム（以下，クライアント）�
 
 \lstinputlisting[caption=モーションデータの正規化処理, label=source-normalize, style=MyCpp]{Code/normalize.cpp}
 
-そして，正規化した各モーションデータのそれぞれ30\%に，平均0で分散1のガウシアンノイズによるノイズ加工を行う．
+そして，正規化した各モーションデータのそれぞれ30\%に，平均が0で分散が1のガウシアンノイズによるノイズ加工を行う．
 この処理をソースコード\ref{source-dA-noise}に示す．
 
 \lstinputlisting[caption=dA学習時のノイズ加工, label=source-dA-noise, style=MyCpp]{Code/dA-noise.cpp}
