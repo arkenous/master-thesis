@@ -171,7 +171,7 @@ R_z(\theta) = \left(
 本システムでは，基本的にNVIDIA製GPUを搭載しCUDA\cite{4-cuda}を利用したGPGPUによる高速演算が可能な計算機上で動作するプログラム（以下，サーバ）でニューラルネットワークに関する処理を実行する．
 Android端末上で動作するプログラム（以下，クライアント）とサーバでデータをやりとりする際にはTCPソケットを用いる．
 
-% @suppress ParagraphNumber DuplicatedSection InvalidSymbol JapaneseAmbigousNounConjunction
+% @suppress ParagraphNumber DuplicatedSection InvalidSymbol JapaneseNumberExpression JapaneseAmbiguousNounConjunction
 \subsection{登録モード}
 登録モードでは，動作モード値・ユーザ名・前述の加工を行ったモーションデータをTCPソケットを用いてサーバに送信する．
 サーバ側ではこれらデータをJavaで書かれたプログラムで受信し，JNI\cite{4-jni}を用いてC++で書かれたニューラルネットワークプログラムに処理を移す．
