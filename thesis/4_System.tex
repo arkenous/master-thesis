@@ -1,6 +1,7 @@
 \chapter{提案システム}
 本章では，本研究で開発したスマートフォンのモーションセンサを利用した個人認証システムについて説明する．
 
+% @suppress JapaneseNumberExpression
 \section{システムの概要}
 本システムは，Android端末に一般的に搭載されている加速度センサと角速度センサを用いてモーションデータを収集し，Denoising Autoencoderとその後ろに識別用ニューロンを繋げた識別器を用いて個人認証を行う．
 本システムには，登録モードと認証モードという二つの動作モードがある．
@@ -164,7 +165,7 @@ Android端末上で識別器の学習をする場合，一般的な端末ではG
 そこで本システムでは，NVIDIA製GPUを搭載しCUDA\cite{4-cuda}を利用したGPGPUによる高速演算が可能な計算機上で動作するプログラム（以下，サーバ）でニューラルネットワークに関する処理を実行する．
 Android端末上で動作するプログラム（以下，クライアント）とサーバでデータをやりとりする際にはTCPソケットを用いる．
 
-% @suppress ParagraphNumber DuplicatedSection InvalidSymbol JapaneseNumberExpression JapaneseAmbiguousNounConjunction
+% @suppress ParagraphNumber DuplicatedSection InvalidSymbol JapaneseNumberExpression JapaneseAmbiguousNounConjunction CommaNumber
 \subsection{登録モード}
 登録モードでは，動作モード値・ユーザ名・前述の加工を行ったモーションデータをTCPソケットを用いてサーバに送信する．
 サーバ側ではこれらデータをJavaで書かれたプログラムで受信し，JNI\cite{4-jni}を用いてC++で書かれたニューラルネットワークプログラムに処理を移す．
