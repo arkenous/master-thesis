@@ -6,7 +6,7 @@
 本システムは，Android端末に一般的に搭載されている加速度センサと角速度センサを用いてモーションデータを収集し，Denoising Autoencoderとその後ろに識別用ニューロンを繋げた識別器を用いて個人認証を行う．
 本システムには，登録モードと認証モードという二つの動作モードがある．
 登録モードでは，入力されたモーションデータの一部を平均が0で分散が1のガウシアンノイズを用いて上書きしたものを用いて，Denoising Autoencoderで特徴を学習させる．
-その後識別用ニューロンを繋いで入力データに対する教師信号として0.0を，入力データと同じ値域・次元数で生成した乱数でデータの一部を上書きしたダミーデータに対する教師信号として1.0を与えて識別器の学習を行う．
+その後識別用ニューロンを繋いで入力データに対する教師信号として0.0を，入力データの20\%を0でを上書きしたダミーデータに対する教師信号として1.0を与えて識別器の学習を行う．
 認証モードでは，入力されたモーションデータを学習済みの識別器に入力し，得られた出力を用いて個人認証を行う．
 
 \subsection{動作モード選択}
@@ -14,12 +14,54 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 画面下部にある``Start''ボタンを押すことで，図\ref{select-mode}の動作モード選択ダイアログが表示される．
 ``Registration''を選択すると登録モードに，``Authentication''を選択すると認証モードに遷移する．
 
+\begin{figure}[hbtp]
+  \centering
+  \begin{tabular}{c}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/start.pdf}
+      \caption{スタート画面}
+      \label{start}
+    \end{minipage}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/select-mode.pdf}
+      \caption{動作モード選択}
+      \label{select-mode}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+
 % @suppress DuplicatedSection
 \subsection{登録モード}
 登録モードに遷移すると，図\ref{reg-input-name}のユーザ名入力画面が表示される．
 ここでは登録するユーザ名を入力する．
 ユーザ名を入力して画面下部にある``OK''ボタンを押すことでユーザ名が正しく入力されたか確認する処理が行われ，確認できれば図\ref{registration}のモーション入力画面が表示される．
 ユーザ名が入力されていない，もしくは空白文字しか入力されていない場合は図\ref{reg-input-name-toast}のようにAndroidシステムに標準で用意されている通知機能であるToastを用いてユーザにエラーを通知する．
+
+\begin{figure}[hbtp]
+  \centering
+  \begin{tabular}{c}
+    \begin{minipage}{0.33\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/reg-input-name.pdf}
+      \caption{ユーザ名入力画面}
+      \label{reg-input-name}
+    \end{minipage}
+    \begin{minipage}{0.33\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/registration.pdf}
+      \caption{登録画面}
+      \label{registration}
+    \end{minipage}
+    \begin{minipage}{0.33\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/reg-input-name-toast.pdf}
+      \caption{エラー通知}
+      \label{reg-input-name-toast}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
 
 モーション入力画面では，画面下部の``モーションデータ取得''ボタンを押している間，加速度センサと角速度センサそれぞれにデータを取得するための専用スレッドが起動して各センサからデータが取得・蓄積される．
 また，データ取得用スレッドの起動と同時に時間計測用スレッドも起動し，1秒経過毎に端末をバイブレートさせることでユーザにモーション入力の経過時間を伝える．
@@ -30,14 +72,76 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 また，先ほどのメニュー画面から``リセット''を選択すると，図\ref{reg-reset}のダイアログが表示される．
 ここで``YES''を選択することで，モーションデータの取得状態をリセットし，一からモーション入力をやり直すことができる．
 
+\begin{figure}[hbtp]
+  \centering
+  \begin{tabular}{c}
+    \begin{minipage}{0.33\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/reg-menu.pdf}
+      \caption{メニュー画面}
+      \label{reg-menu}
+    \end{minipage}
+    \begin{minipage}{0.33\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/reg-change-time.pdf}
+      \caption{データ取得回数設定画面}
+      \label{reg-change-time}
+    \end{minipage}
+    \begin{minipage}{0.33\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/reg-reset.pdf}
+      \caption{リセット画面}
+      \label{reg-reset}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+
+
 モーション入力が終わるたびに，取得したモーションデータのデータ数が確認される．
 加速度センサ及び角速度センサから得られたX軸データのいずれかのデータ数が10個を下回っていた場合，図\ref{reg-recollect}のダイアログを表示し，ユーザに再度モーションを入力させる．
 設定回数分のモーション入力が終わると図\ref{reg-progress}のプログレスダイアログが表示され，後述するモーションデータの加工及び識別器の学習を行うスレッドが起動する．
+
+\begin{figure}[hbtp]
+  \centering
+  \begin{tabular}{c}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/reg-recollect.pdf}
+      \caption{データ再入力ダイアログ}
+      \label{reg-recollect}
+    \end{minipage}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/reg-progress.pdf}
+      \caption{プログレスダイアログ}
+      \label{reg-progress}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
 
 モーションデータの加工及び識別器の学習が終わると図\ref{reg-finish}のダイアログが表示される．
 ``OK''ボタンを押すことでユーザ名と暗号化した学習済み識別器のパラメータ，データの次元数を他アプリからの読み書きができない形で端末に保存し，スタート画面に遷移する．
 何らかの原因で識別器の学習ができなかった場合は図\ref{reg-error}のダイアログが表示される．
 ``OK''ボタンを押すことでモーションデータの取得状態がリセットされるので再度モーションを入力する．
+
+\begin{figure}[hbtp]
+  \centering
+  \begin{tabular}{c}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/reg-finish.pdf}
+      \caption{登録完了ダイアログ}
+      \label{reg-finish}
+    \end{minipage}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/reg-error.pdf}
+      \caption{登録失敗ダイアログ}
+      \label{reg-error}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+
 
 % @suppress DuplicatedSection
 \subsection{認証モード}
@@ -45,6 +149,31 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 ここでは認証するユーザ名を入力する．
 ユーザ名を入力して画面下部にある``OK''ボタンを押すことで登録モードで保存されたユーザ名のリストから入力されたユーザ名と合致するものが存在するか検索され，存在していた場合は図\ref{authentication}のモーション入力画面が表示される．
 存在していなかった場合は，図\ref{auth-input-name-toast}のようにToastを用いてユーザにエラーを通知する．
+
+\begin{figure}[hbtp]
+  \centering
+  \begin{tabular}{c}
+    \begin{minipage}{0.33\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/auth-input-name.pdf}
+      \caption{ユーザ名入力画面}
+      \label{auth-input-name}
+    \end{minipage}
+    \begin{minipage}{0.33\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/authentication.pdf}
+      \caption{認証画面}
+      \label{authentication}
+    \end{minipage}
+    \begin{minipage}{0.33\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/auth-input-name-toast.pdf}
+      \caption{エラー通知}
+      \label{auth-input-name-toast}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+
 
 モーション入力画面では，画面下部の``モーションデータ取得''ボタンを押している間，加速度センサと角速度センサそれぞれにデータを取得するための専用スレッドが起動して各センサからデータが取得・蓄積される．
 また，データ取得用スレッドの起動と同時に時間計測用スレッドも起動し，1秒経過毎に端末をバイブレートさせることでユーザにモーション入力の経過時間を伝える．
@@ -55,20 +184,56 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 加速度センサ及び角速度センサから得られたX軸データのいずれかのデータ数が10個を下回っていた場合，図\ref{auth-recollect}のダイアログを表示し，ユーザに再度モーションを入力させる．
 設定回数分のモーション入力が終わると図\ref{auth-progress}のプログレスダイアログが表示され，後述するモーションデータの加工及び識別器による個人認証を行うスレッドが起動する．
 
+\begin{figure}[hbtp]
+  \centering
+  \begin{tabular}{c}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/auth-recollect.pdf}
+      \caption{データ再入力ダイアログ}
+      \label{auth-recollect}
+    \end{minipage}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/auth-progress.pdf}
+      \caption{プログレスダイアログ}
+      \label{auth-progress}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+
 モーションデータの加工及び個人認証が終わると，認証結果をダイアログで表示する．
 認証に成功すれば図\ref{auth-succeed}のダイアログが表示され，``OK''ボタンを押すことでスタート画面に遷移する．
 認証に失敗すれば図\ref{auth-failure}のダイアログが表示され，``OK''ボタンを押すことでモーションデータの取得状態がリセットされ，再度個人認証を行える．
 
+\begin{figure}[hbtp]
+  \centering
+  \begin{tabular}{c}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/auth-succeed.pdf}
+      \caption{認証成功ダイアログ}
+      \label{auth-succeed}
+    \end{minipage}
+    \begin{minipage}{0.5\hsize}
+      \centering
+      \includegraphics[bb=0 0 1080 1705, width=5cm]{Screeshots/auth-failure.pdf}
+      \caption{認証失敗ダイアログ}
+      \label{auth-failure}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+
 \section{モーションデータの加工}
-登録モードと認証モードのいずれも，モーションセンサから得られたデータはニューラルネットワークで用いる前に，``データ数の均一化''・``フーリエ変換を用いたローパスフィルタ''・``角速度から変位，角速度から角度への変換''・``変位データを角度データで回転''という四つの加工を行う．
+登録モードと認証モードのいずれも，モーションセンサから得られたデータはニューラルネットワークで用いる前に，``データ数の均一化''・``フーリエ変換を用いたローパスフィルタ''・``角速度から変位，角速度から角度への変換''・``変位データを角度データで回転''・``データの増幅''という五つの加工を行う．
 
 \subsection{データ数の均一化}
 本システムでは，モーション入力を任意の時間で行える．
 この際，登録モードにおけるデフォルトでは3回のモーション入力によるモーションデータ，認証モードでは登録時に用いたモーションデータと新たに入力されたモーションデータ間でデータ数の差異が生じる場合がある．
 本システムで用いたニューラルネットワークでは入力されるデータにおける次元数のばらつきは許容できないため，事前にデータ数を均一化する必要がある．
 
-登録モードでは，最も入力時間の長かったデータを基準に他のデータに対して末尾にゼロを補填する方法を用いる．
-認証モードでは，登録時に用いたデータの長さを基準に新たに入力されたデータが短い場合は末尾にゼロを補填し，長い場合は末尾を切り落とす方法でデータ数を均一化している．
+登録モードでは，最も入力時間の長かったデータを基準に他のデータに対して末尾に0を補填する方法を用いる．
+認証モードでは，登録時に用いたデータの長さを基準に新たに入力されたデータが短い場合は末尾に0を補填し，長い場合は末尾を切り落とす方法でデータ数を均一化している．
 
 % @suppress ParagraphNumber InvalidSymbol
 \subsection{ローパスフィルタ}
@@ -150,6 +315,18 @@ R_z(\theta) = \left(
 \right)．
 \end{eqnarray}
 
+\subsection{データの増幅}
+センサから得られ，ここまでの加工を行ったデータは図\ref{data-sample}に示すようにデータの変化が小さい．
+このようなデータをそのまま識別器の入力とした場合，識別器の学習や識別が上手くいかないことが多い．
+そのため，全てのデータを1000倍することで，より識別器にとって扱いやすいデータに加工する．
+
+\begin{figure}[hbtp]
+  \centering
+  \includegraphics[bb=0 0 360 216, width=12cm]{Graphs/data.pdf}
+  \caption{識別器への入力データサンプル}
+  \label{data-sample}
+\end{figure}
+
 \section{ニューラルネットワークによる学習と識別}
 本システムは，図\ref{system-nn}のようなDenoising Autoencoderと識別用ニューロンを繋げた識別器により個人認証を行う．
 
@@ -179,13 +356,13 @@ Android端末上で動作するプログラム（以下，クライアント）�
 この処理を付録\ref{source-dA-noise}に示す．
 
 ノイズ加工を行った後，Denoising Autoencoderの学習を行う．
-学習データにノイズ加工を行ったモーションデータを，教師信号にノイズ加工を行う前のモーションデータを与え，損失関数に最小二乗誤差を用いて300回の学習を行う．
-学習時のDenoising Autoencoderの構成は，中間層のニューロン数を入力層や出力層のニューロン数から50\%削減し，中間層の活性化関数にシグモイド関数，出力層の活性化関数に恒等関数を用い，中間層ニューロンのうち50\%をランダムにDropoutさせる．
+学習データにノイズ加工を行ったモーションデータを，教師信号にノイズ加工を行う前のモーションデータを与え，損失関数に最小二乗誤差を用いて200回の学習を行う．
+学習時のDenoising Autoencoderの構成は，中間層のニューロン数を入力層や出力層のニューロン数から30\%削減し，中間層の活性化関数にシグモイド関数，出力層の活性化関数に恒等関数を用い，中間層ニューロンのうち50\%をランダムにDropoutさせる．
 %学習が完了したら，次は識別用ニューロンをつないで，ダミーデータを生成して学習する
 Denoising Autoencoderの学習が終われば，Denoising Autoencoderのパラメータを固定して，この後ろに活性化関数にシグモイド関数を用いたニューロンを繋げる．
-そして，正規化する前のモーションデータの値域で生成した乱数でデータの20\%を上書きしたダミーデータを生成し，正規化する．
+そして，データの20\%を0で上書きしたダミーデータを生成し，正規化する．
 %こちらもDropout率や学習回数などを
-学習データに正規化したモーションデータとダミーデータを，教師信号にそれぞれ0.0と1.0を与え，損失関数に交差エントロピー誤差を用いて誤差が0.1未満になるまで最大1000回の学習を行う．
+学習データに正規化したモーションデータとダミーデータを，教師信号にそれぞれ0.0と1.0を与え，損失関数に交差エントロピー誤差を用いて誤差が0.1未満になるまで最大500回の学習を行う．
 この際Dropoutを無効にし，Denoising Autoencoderの出力に対して1から先ほどの学習時に適用したDropout率を引いた0.5を掛ける．
 
 %学習できたら，学習済みニューラルネットワークのパラメータをAndroid端末側に送り返す
@@ -204,6 +381,6 @@ Denoising Autoencoderの学習が終われば，Denoising Autoencoderのパラ�
 構築できたらこれに正規化したモーションデータを与え，出力値を得る．
 そして，得られた出力値をクライアントに送る．
 
-クライアント側はこの値を受け取り，値が0.3未満であれば認証成功とし，0.3以上であれば認証失敗とする．
+クライアント側はこの値を受け取り，値が0.4未満であれば認証成功とし，0.4以上であれば認証失敗とする．
 
 また，認証モードに限り，端末が何らかの理由でサーバに接続できない場合は端末内でサーバと同等の処理が行えるようにしている．
