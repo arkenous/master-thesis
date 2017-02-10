@@ -14,7 +14,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 画面下部にある``Start''ボタンを押すことで，図\ref{select-mode}の動作モード選択ダイアログが表示される．
 ``Registration''を選択すると登録モードに，``Authentication''を選択すると認証モードに遷移する．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \begin{tabular}{c}
     \begin{minipage}{0.5\hsize}
@@ -37,9 +37,9 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 登録モードに遷移すると，図\ref{reg-input-name}のユーザ名入力画面が表示される．
 ここでは登録するユーザ名を入力する．
 ユーザ名を入力して画面下部にある``OK''ボタンを押すことでユーザ名が正しく入力されたか確認する処理が行われ，確認できれば図\ref{registration}のモーション入力画面が表示される．
-ユーザ名が入力されていない，もしくは空白文字しか入力されていない場合は図\ref{reg-input-name-toast}のようにAndroidシステムに標準で用意されている通知機能であるToastを用いてユーザにエラーを通知する．
+ユーザ名が入力されていないか空白文字しか入力されていない場合は，図\ref{reg-input-name-toast}のようにシステムに標準で用意されている通知機能であるToastを用いてユーザにエラーを通知する．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \begin{tabular}{c}
     \begin{minipage}{0.33\hsize}
@@ -72,7 +72,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 また，先ほどのメニュー画面から``リセット''を選択すると，図\ref{reg-reset}のダイアログが表示される．
 ここで``YES''を選択することで，モーションデータの取得状態をリセットし，一からモーション入力をやり直すことができる．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \begin{tabular}{c}
     \begin{minipage}{0.33\hsize}
@@ -84,7 +84,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
     \begin{minipage}{0.33\hsize}
       \centering
       \includegraphics[bb=0 0 1080 1705, width=5cm]{Screenshots/reg-change-time.pdf}
-      \caption{データ取得回数設定画面}
+      \caption{取得回数設定画面}
       \label{reg-change-time}
     \end{minipage}
     \begin{minipage}{0.33\hsize}
@@ -101,7 +101,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 加速度センサ及び角速度センサから得られたX軸データのいずれかのデータ数が10個を下回っていた場合，図\ref{reg-recollect}のダイアログを表示し，ユーザに再度モーションを入力させる．
 設定回数分のモーション入力が終わると図\ref{reg-progress}のプログレスダイアログが表示され，後述するモーションデータの加工及び識別器の学習を行うスレッドが起動する．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \begin{tabular}{c}
     \begin{minipage}{0.5\hsize}
@@ -124,7 +124,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 何らかの原因で識別器の学習ができなかった場合は図\ref{reg-error}のダイアログが表示される．
 ``OK''ボタンを押すことでモーションデータの取得状態がリセットされるので再度モーションを入力する．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \begin{tabular}{c}
     \begin{minipage}{0.5\hsize}
@@ -150,7 +150,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 ユーザ名を入力して画面下部にある``OK''ボタンを押すことで登録モードで保存されたユーザ名のリストから入力されたユーザ名と合致するものが存在するか検索され，存在していた場合は図\ref{authentication}のモーション入力画面が表示される．
 存在していなかった場合は，図\ref{auth-input-name-toast}のようにToastを用いてユーザにエラーを通知する．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \begin{tabular}{c}
     \begin{minipage}{0.33\hsize}
@@ -184,7 +184,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 加速度センサ及び角速度センサから得られたX軸データのいずれかのデータ数が10個を下回っていた場合，図\ref{auth-recollect}のダイアログを表示し，ユーザに再度モーションを入力させる．
 設定回数分のモーション入力が終わると図\ref{auth-progress}のプログレスダイアログが表示され，後述するモーションデータの加工及び識別器による個人認証を行うスレッドが起動する．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \begin{tabular}{c}
     \begin{minipage}{0.5\hsize}
@@ -206,7 +206,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 認証に成功すれば図\ref{auth-succeed}のダイアログが表示され，``OK''ボタンを押すことでスタート画面に遷移する．
 認証に失敗すれば図\ref{auth-failure}のダイアログが表示され，``OK''ボタンを押すことでモーションデータの取得状態がリセットされ，再度個人認証を行える．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \begin{tabular}{c}
     \begin{minipage}{0.5\hsize}
@@ -248,7 +248,7 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 % ローパスフィルタの比較グラフ
 ローパスフィルタ処理によるデータの変化を示したグラフを図\ref{graph-lowpass}に示す．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \includegraphics[bb=0 0 360 216, width=12cm]{Graphs/lowpass.pdf}
   \caption{ローパスフィルタ処理によるデータの変化}
@@ -320,7 +320,7 @@ R_z(\theta) = \left(
 このようなデータをそのまま識別器の入力とした場合，識別器の学習や識別が上手くいかないことが多い．
 そのため，全てのデータを1000倍することで，より識別器にとって扱いやすいデータに加工する．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \includegraphics[bb=0 0 360 216, width=12cm]{Graphs/data.pdf}
   \caption{識別器への入力データサンプル}
@@ -330,7 +330,7 @@ R_z(\theta) = \left(
 \section{ニューラルネットワークによる学習と識別}
 本システムは，図\ref{system-nn}のようなDenoising Autoencoderと識別用ニューロンを繋げた識別器により個人認証を行う．
 
-\begin{figure}[hbtp]
+\begin{figure}[bthp]
   \centering
   \includegraphics[bb=0 0 622 587, width=9cm]{Figures/system-nn.pdf}
   \caption{識別に用いるニューラルネットワーク}
