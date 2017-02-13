@@ -241,8 +241,8 @@ Androidアプリケーションを起動すると，図\ref{start}のスター�
 時間軸領域で表されるデータをフーリエ変換を用いて周波数領域に変換すると，モーション入力中に生じた手の震えなどによるデータが高周波成分として現れる．
 この高周波成分を取り除いた上で元の時間軸領域で表されるデータに逆変換するローパスフィルタ処理を行うことで，手の震えなどによる影響の少ないデータを得られる．
 
-フーリエ変換の実装には，CERNのColt Project\cite{4-colt-project}で開発された科学技術計算用ライブラリであるColtをマルチスレッド化したParallel Colt\cite{4-parallel-colt}に含まれている，JTransforms\cite{4-jtransforms}を用いた．
-（この処理を付録のソースコード\ref{source-lowpass}に示す．）
+フーリエ変換の実装には，CERNのColt Project\cite{4-colt-project}で開発された科学技術計算用ライブラリであるColtをマルチスレッド化したParallel Colt\cite{4-parallel-colt}に含まれている，JTransforms\cite{4-jtransforms}を用いた
+（この処理を付録のソースコード\ref{source-lowpass}に示す．）．
 
 % ローパスフィルタの比較グラフ
 ローパスフィルタ処理によるデータの変化を示したグラフを図\ref{graph-lowpass}に示す．
@@ -267,21 +267,21 @@ x = \frac{1}{2} a t^2．
 \end{equation}
 
 $x$は変位を，$a$は加速度を，$t$は加速度データの取得間隔を表している．
-なお，本システムでは初速度を考慮しない．
-（この処理を付録のソースコード\ref{source-accel-to-displacement}に示す．）
+なお，本システムでは初速度を考慮しない
+（この処理を付録のソースコード\ref{source-accel-to-displacement}に示す．）．
 また，角速度から角度への変換は式\ref{gyro-to-angle}で行う．
 \begin{equation}
 \label{gyro-to-angle}
 y = g t．
 \end{equation}
 
-$y$は角度を，$g$は角速度を，$t$は角速度データの取得間隔を表している．
-（この処理を付録のソースコード\ref{source-gyro-to-angle}に示す．）
+$y$は角度を，$g$は角速度を，$t$は角速度データの取得間隔を表している
+（この処理を付録のソースコード\ref{source-gyro-to-angle}に示す．）．
 
 % @suppress InvalidSymbol
 \subsection{変位データを角度データで回転}
-加速度センサあるいは角速度センサいずれかのデータの変化が小さい場合に生じる識別率低下を防ぐため，加速度から変位，角速度から角度へ変換したデータに対して，次は変位データを角度データで回転させる処理を行う．
-（この処理を付録のソースコード\ref{source-rotate-vector}に示す．）
+加速度センサあるいは角速度センサいずれかのデータの変化が小さい場合に生じる識別率低下を防ぐため，加速度から変位，角速度から角度へ変換したデータに対して，次は変位データを角度データで回転させる処理を行う
+（この処理を付録のソースコード\ref{source-rotate-vector}に示す．）．
 
 変位データを回転させるcombineメソッドには，変位データの他にモーションデータ取得開始時点からどれだけ回転したかを保持するangleX・angleY・angleZのラジアンを渡している．
 この際，各軸を中心に反時計回りで変位データを回転させるために，それぞれの正負を逆にした上でそのラジアンを求めている．
