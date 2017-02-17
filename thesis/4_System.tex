@@ -353,7 +353,7 @@ Android端末は一般的なPC端末とは違って，GPUを搭載したモデ�
 この処理を付録のソースコード\ref{source-normalize}に示す．
 
 そして，正規化した各モーションデータのそれぞれ30\%に，平均が0で分散が1のガウシアンノイズによるノイズ加工を行う．
-VincentらによるStacked Denoising Autoencoderの研究\cite{4-sda}において実数データに対するノイズ付加方法としてガウシアンノイズによるノイズ加工を選ぶことが自然であると説明されていることから．本システムのDenoising Autoencoderにおけるノイズ加工にはこの方法を採用した．
+VincentらによるStacked Denoising Autoencoderの研究\cite{4-sda}において実数データに対するノイズ付加方法としてガウシアンノイズによるノイズ加工を選ぶことが自然であると説明されていることから，本システムのDenoising Autoencoderにおけるノイズ加工にはこの方法を採用した．
 この処理を付録のソースコード\ref{source-dA-noise}に示す．
 
 ノイズ加工を行った後，Denoising Autoencoderの学習を行う．
